@@ -1,6 +1,6 @@
 
 links:
   - title: About
-    page: about.md
+    url: https://frozenblock.net/about
   - title: GitHub
     url: https://github.com/FrozenBlock/
