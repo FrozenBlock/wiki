@@ -1,6 +1,6 @@
 
 links:
   - title: About
-    url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+    page: about.md
   - title: GitHub
     url: https://github.com/FrozenBlock/
