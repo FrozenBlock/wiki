@@ -1,7 +1,7 @@
 ---
 layout: page
 ---
-FrozenBlock is a modding group for Minecraft.
+FrozenBlock is a Minecraft mod-development team focused on creating mods with enriching experiences akin to vanilla Minecraft!
 
 ## Projects
 
