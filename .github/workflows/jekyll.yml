@@ -8,11 +8,6 @@ jobs:
       ImageOS: ubuntu22
     steps:
       - uses: actions/checkout@v3
-      # Maintain timestamps of previously published files
-      - uses: actions/checkout@v3
-        with:
-          ref: static
-          path: _site
       - uses: actions/setup-node@v3
         with:
           node-version: 18
