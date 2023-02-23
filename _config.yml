@@ -16,7 +16,7 @@
 title: FrozenBlock
 description: The home of the FrozenBlock Modding Oasis.
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "http://frozenblock.net" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://frozenblock.net" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 markdown: kramdown
