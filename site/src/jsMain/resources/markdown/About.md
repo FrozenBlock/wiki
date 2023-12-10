@@ -4,16 +4,22 @@ root: .components.layouts.MarkdownLayout("About")
 
 # About FrozenBlock
 
-FrozenBlock is a Minecraft modding team making mods for the
-latest versions of Minecraft using the Fabric Loader.
+FrozenBlock is a Minecraft mod-development team focused on
+creating mods with enriching experiences akin to vanilla Minecraft!
 
 ---
 
-## Mods
+## Projects
+
+### Frozenlib
+
+FrozenBlock maintains [FrozenLib](https://modrinth.com/mod/FrozenLib),
+a library designed to make modding easier.
 
 ### Wilder Wild
 
-A wild mod
+[Wilder Wild](https://modrinth.com/mod/WilderWild) is a mod focused on
+overhauling the Wild Update, adding features and improving existing ones.
 
 ### The Wild Mod
 
