@@ -9,6 +9,6 @@ server:
       api: "build/libs/net.jar"
     prod:
       script: "build/dist/js/productionExecutable/net.js"
-      siteRoot: ".kobweb/site"
+      siteRoot: "../docs"
 
   port: 8080
