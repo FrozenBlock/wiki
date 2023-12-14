@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         java: [17]
-        os: [ubuntu-latest]
+        os: [macos-latest]
     runs-on: ${{ matrix.os }}
     permissions:
       contents: write
@@ -36,6 +36,8 @@ jobs:
           key: ${{ runner.os }}-gradle-#{{ hashFiles('**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      - name: Install Kobweb
+        run: brew install varabyte/tap/kobweb
       - name: Fix Permissions
         run: |
           chmod -c -R +rX "docs/" | while read line; do
