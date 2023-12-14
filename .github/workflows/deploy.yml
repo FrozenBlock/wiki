@@ -43,7 +43,7 @@ jobs:
           done
       - name: Export
         working-directory: ./site
-        run: ../gradlew kobwebExport -PkobwebReuseServer=false -PkobwebEnv=DEV -PkobwebRunLayout=KOBWEB -PkobwebBuildTarget=RELEASE -PkobwebExportLayout=static
+        run: ../gradlew kobwebExport -PkobwebReuseServer=false -PkobwebEnv=DEV -PkobwebRunLayout=STATIC -PkobwebBuildTarget=RELEASE -PkobwebExportLayout=STATIC
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v2
         with:
