@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         java: [21]
-        os: [macos-latest]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     permissions:
       contents: write
@@ -36,16 +36,14 @@ jobs:
           key: ${{ runner.os }}-gradle-#{{ hashFiles('**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: Install Kobweb
-        run: brew install varabyte/tap/kobweb
-      #- name: Fix Permissions
-      #  run: |
-      #    chmod -c -R +rX "docs/" | while read line; do
-      #      echo "::warning title=Invalid file permissions automatically fixed::$line"
-      #    done
+      - name: Fix Permissions
+        run: |
+          chmod -c -R +rX "docs/" | while read line; do
+            echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
       - name: Export
         working-directory: ./site
-        run: kobweb export --layout static
+        run: ./gradlew kobwebExport -PkobwebReuseServer=false -PkobwebEnv=DEV -PkobwebRunLayout=KOBWEB -PkobwebBuildTarget=RELEASE -PkobwebExportLayout=static
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v2
         with:
