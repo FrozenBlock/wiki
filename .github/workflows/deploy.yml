@@ -38,11 +38,11 @@ jobs:
             ${{ runner.os }}-gradle-
       - name: Install Kobweb
         run: brew install varabyte/tap/kobweb
-      - name: Fix Permissions
-        run: |
-          chmod -c -R +rX "docs/" | while read line; do
-            echo "::warning title=Invalid file permissions automatically fixed::$line"
-          done
+      #- name: Fix Permissions
+      #  run: |
+      #    chmod -c -R +rX "docs/" | while read line; do
+      #      echo "::warning title=Invalid file permissions automatically fixed::$line"
+      #    done
       - name: Export
         working-directory: ./site
         run: kobweb export --layout static
