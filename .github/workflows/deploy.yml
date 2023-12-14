@@ -42,7 +42,9 @@ jobs:
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
       - name: Export
-        run: ./export.sh
+        run: |
+          cd site || exit
+          kobweb export --layout static
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v2
         with:
