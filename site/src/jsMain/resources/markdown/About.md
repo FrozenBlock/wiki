@@ -18,7 +18,7 @@ a library designed to make modding easier.
 
 ### Wilder Wild
 
-[Wilder Wild](https://modrinth.com/mod/WilderWild) is a mod focused on
+[Wilder Wild](https://modrinth.com/mod/wilder-wild) is a mod focused on
 overhauling the Wild Update, adding features and improving existing ones.
 
 ### The Wild Mod
