@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>About</title>
   <meta content="FrozenBlock!" name="description">
-  <link href="/frozenblock.net/favicon.ico" rel="icon">
+  <link href="/favicon.ico" rel="icon">
   <meta content="width=device-width, initial-scale=1" name="viewport">
  </head>
  <body>
@@ -16,10 +16,10 @@
     <div class="kobweb-box kobweb-align-center" style="width: 100%; min-height: 100%; grid-template-rows: 1fr min-content;">
      <div class="kobweb-col kobweb-arrange-top kobweb-align-center-horiz" style="width: 100%; height: 100%; grid-row: 1 / 2;">
       <div class="nav-header kobweb-row kobweb-arrange-start kobweb-align-center-vert">
-       <a class="silk-link" href="/frozenblock.net/"><img class="silk-image" style="height: 5rem; display: block;" src="/frozenblock.net/fb_banner_transparent.png" alt="FrozenBlock Logo"></a>
+       <a class="silk-link" href="/"><img class="silk-image" style="height: 5rem; display: block;" src="/fb_banner_transparent.png" alt="FrozenBlock Logo"></a>
        <div class="kobweb-spacer"></div>
        <div class="silk-display-if-at-least-md kobweb-row kobweb-arrange-start kobweb-align-center-vert" style="gap: 1.5rem;">
-        <a class="silk-link silk-link-undecorated silk-link-uncolored" href="/frozenblock.net/">Home</a><a class="silk-link silk-link-undecorated silk-link-uncolored" href="/frozenblock.net/about">About</a><button class="silk-button silk-button-circle silk-button-uncolored" style="--silk-button-font-size: 1em; --silk-button-height: 2.5rem; --silk-button-padding-horizontal: 1rem;" type="button">
+        <a class="silk-link silk-link-undecorated silk-link-uncolored" href="/">Home</a><a class="silk-link silk-link-undecorated silk-link-uncolored" href="/about">About</a><button class="silk-button silk-button-circle silk-button-uncolored" style="--silk-button-font-size: 1em; --silk-button-height: 2.5rem; --silk-button-padding-horizontal: 1rem;" type="button">
          <div class="kobweb-row kobweb-arrange-center kobweb-align-center-vert">
           <svg width="1em" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
            <g stroke-linejoin="round" stroke-linecap="round">
@@ -84,50 +84,7 @@
      </div>
     </div>
    </div>
-  </div><!-- Encoded spinner character is a cobweb -->
-  <div id="status">
-   <span id="warning">❌</span><span id="spinner">🕸️</span> <span id="text"></span>
-   <style>
-        @keyframes kobweb-spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(359deg); }
-        }
-        body > #status {
-            position: fixed;
-            font-size: 24px;
-            background: whitesmoke;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px;
-            border: 1px solid;
-            border-radius: 10px;
-            visibility: hidden;
-            opacity: 0;
-            z-index: 2147483647;
-            user-select: none;
-        }
-        body > #status > .hidden {
-           display: none;
-        }
-        body > #status > .visible {
-            display: inline-block;
-        }
-        body > #status.fade-in {
-            visibility: visible;
-            opacity: 1;
-            transition: opacity 1s;
-        }
-        body > #status.fade-out {
-           visibility: hidden;
-           opacity: 0;
-           transition: visibility 0s 1s, opacity 1s;
-        }
-        body > #status > #spinner {
-            animation: kobweb-spin 1.5s linear infinite;
-        }
-    </style>
   </div>
-  <script src="/frozenblock.net/frozenblock.net.js"></script>
+  <script src="/frozenblock.net.js"></script>
  </body>
 </html>
