@@ -27,8 +27,8 @@ jobs:
     strategy:
       matrix:
         java: [21]
-        os: [ubuntu-latest]
-    runs-on: ubuntu-latest
+        os: [macos-latest]
+    runs-on: macos-latest
     steps:
       - name: Checking Out the Repository
         uses: actions/checkout@v4
@@ -57,9 +57,13 @@ jobs:
           chmod -c -R +rX "site/.kobweb/site/" | while read line; do
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
+      - name: Setup Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+      - name: Install Kobweb
+        run: brew install varabyte/tap/kobweb
       - name: Export
         working-directory: site
-        run: ../gradlew -PkobwebRunLayout=STATIC -PkobwebExportLayout=STATIC
+        run: kobweb export --layout static
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload Pages Artifact
@@ -75,7 +79,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
