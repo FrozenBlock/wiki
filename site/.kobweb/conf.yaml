@@ -1,5 +1,6 @@
 site:
   title: "FrozenBlock | The home of the FrozenBlock Modding Oasis."
+  routePrefix: "frozenblock.net"
 
 server:
   files:
