@@ -51,6 +51,7 @@ private fun MenuItems() {
     NavLink("/", "Home")
     NavLink("/about", "About")
     NavLink("https://wiki.frozenblock.net", "Wiki")
+    NavLink("https://wiki.archlinux.org", "Super Secret Settings")
 }
 
 @Composable
