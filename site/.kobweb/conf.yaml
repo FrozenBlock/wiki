@@ -5,10 +5,10 @@ server:
   files:
     dev:
       contentRoot: "build/processedResources/js/main/public"
-      script: "build/dist/js/developmentExecutable/frozenblock.net.js"
-      api: "build/libs/frozenblock.net.jar"
+      script: "build/dist/js/developmentExecutable/wiki.frozenblock.net.js"
+      api: "build/libs/wiki.frozenblock.net.jar"
     prod:
-      script: "build/dist/js/productionExecutable/frozenblock.net.js"
+      script: "build/dist/js/productionExecutable/wiki.frozenblock.net.js"
       siteRoot: ".kobweb/site"
 
   port: 8080

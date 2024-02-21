@@ -6,6 +6,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "frozenblock.net"
+rootProject.name = "wiki.frozenblock.net"
 
 include(":site")
