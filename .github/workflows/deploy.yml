@@ -86,9 +86,8 @@ jobs:
       - name: Unzip kobweb
         run: unzip kobweb-${{ env.KOBWEB_CLI_VERSION }}.zip
       - name: Run export
-        run: |
-          cd site
-          ../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --notty --layout static
+        working-directory: site
+        run: ../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --notty --layout static
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload Pages Artifact
