@@ -1,6 +1,6 @@
 site:
   title: "FrozenBlock | The home of the FrozenBlock Modding Oasis."
-  routePrefix: "frozenblock.net"
+  routePrefix: "frozenblock.github.io/frozenblock.net"
 
 server:
   files:
