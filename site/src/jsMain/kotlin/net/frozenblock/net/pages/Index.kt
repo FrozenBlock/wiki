@@ -13,9 +13,6 @@ import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.core.Page
-import com.varabyte.kobweb.core.rememberPageContext
-import com.varabyte.kobweb.silk.components.forms.Button
-import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
 import com.varabyte.kobweb.silk.components.style.base
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
@@ -23,16 +20,18 @@ import com.varabyte.kobweb.silk.components.style.toAttrs
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
-import com.varabyte.kobweb.silk.theme.colors.ColorSchemes
 import net.frozenblock.net.HeadlineTextStyle
 import net.frozenblock.net.SubheadlineTextStyle
 import net.frozenblock.net.components.layouts.PageLayout
+import net.frozenblock.net.components.sections.ModSection
 import net.frozenblock.net.toSitePalette
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.vh
+import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Text
+import org.w3c.dom.HTMLDivElement
 
 // Container that has a tagline and grid on desktop, and just the tagline on mobile
 val HeroContainerStyle by ComponentStyle {
@@ -57,12 +56,13 @@ val HomeGridCellStyle by ComponentStyle.base {
 }
 
 @Composable
-private fun GridCell(color: Color, row: Int, column: Int, width: Int? = null, height: Int? = null) {
+private fun GridCell(color: Color, row: Int, column: Int, width: Int? = null, height: Int? = null, content: ContentBuilder<HTMLDivElement>? = null) {
     Div(
         HomeGridCellStyle.toModifier()
             .setVariable(GridCellColorVar, color)
             .gridItem(row, column, width, height)
-            .toAttrs()
+            .toAttrs(),
+        content
     )
 }
 
@@ -94,41 +94,12 @@ fun HomePage() {
                     }
 
                     Div(SubheadlineTextStyle.toAttrs()) {
-                        SpanText("You can read the ")
-                        Link("/about", "About")
-                        SpanText(" page for more information.")
-                    }
-
-                    val ctx = rememberPageContext()
-                    Button(onClick = {
-                        // Change this click handler with your call-to-action behavior
-                        // here. Link to an order page? Open a calendar UI? Play a movie?
-                        // Up to you!
-                        ctx.router.navigateTo("https://modrinth.com/organization/frozenblock")
-                        //ctx.router.tryRoutingTo("/about")
-                    }, colorScheme = ColorSchemes.LightBlue) {
-                        Text("Download mods")
+                        Text("Select a mod below to start.")
                     }
                 }
             }
-
-            /*Div(HomeGridStyle
-                .toModifier()
-                .displayIfAtLeast(Breakpoint.MD)
-                .grid {
-                    rows { repeat(3) { size(1.fr) } }
-                    columns { repeat(5) {size(1.fr) } }
-                }
-                .toAttrs()
-            ) {
-                val sitePalette = ColorMode.current.toSitePalette()
-                GridCell(sitePalette.brand.primary, 1, 1, 2, 2)
-                GridCell(ColorSchemes.Monochrome._600, 1, 3)
-                GridCell(ColorSchemes.Monochrome._100, 1, 4, width = 2)
-                GridCell(sitePalette.brand.accent, 2, 3, width = 2)
-                GridCell(ColorSchemes.Monochrome._300, 2, 5)
-                GridCell(ColorSchemes.Monochrome._800, 3, 1, width = 5)
-            }*/
         }
+
+        ModSection()
     }
 }
