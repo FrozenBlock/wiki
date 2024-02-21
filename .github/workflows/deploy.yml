@@ -68,7 +68,7 @@ jobs:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ steps.browser-cache-id.outputs.value }}
       - name: Fetch kobweb
-        uses: robinraju/release-downloader@v1.7
+        uses: robinraju/release-downloader@v1.9
         with:
           repository: "varabyte/kobweb-cli"
           tag: "v${{ env.KOBWEB_CLI_VERSION }}"
@@ -81,13 +81,12 @@ jobs:
         run: |
           cd site
           ../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --notty --layout static
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          name: site
           path: "site/.kobweb/site/"
-          if-no-files-found: error
-          retention-days: 1
 
   # Deploys the exported site
   deploy:
