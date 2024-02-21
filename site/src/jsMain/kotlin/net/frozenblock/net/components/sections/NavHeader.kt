@@ -50,6 +50,7 @@ private fun NavLink(path: String, text: String) {
 private fun MenuItems() {
     NavLink("/", "Home")
     NavLink("/about", "About")
+    NavLink("https://wiki.frozenblock.net", "Wiki")
 }
 
 @Composable
