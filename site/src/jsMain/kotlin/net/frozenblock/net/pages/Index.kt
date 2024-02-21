@@ -69,7 +69,7 @@ private fun GridCell(color: Color, row: Int, column: Int, width: Int? = null, he
 @Page
 @Composable
 fun HomePage() {
-    PageLayout("Home") {
+    PageLayout("Start") {
         Row(HeroContainerStyle.toModifier()) {
             Box {
                 val sitePalette = ColorMode.current.toSitePalette()
@@ -77,7 +77,7 @@ fun HomePage() {
                 Column(Modifier.gap(2.cssRem)) {
                     Div(HeadlineTextStyle.toAttrs()) {
                         SpanText(
-                            "Meet the ", Modifier.color(
+                            "Welcome to the ", Modifier.color(
                                 when (ColorMode.current) {
                                     ColorMode.LIGHT -> Colors.Black
                                     ColorMode.DARK -> Colors.White
@@ -85,7 +85,7 @@ fun HomePage() {
                             )
                         )
                         SpanText(
-                            "FrozenBlock Modding Oasis",
+                            "FrozenBlock Wiki",
                             Modifier
                                 .color(sitePalette.brand.primary)
                                 // Use a shadow so this light-colored word is more visible in light mode
