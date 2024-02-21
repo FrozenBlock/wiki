@@ -1,5 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: Deploy site
 
 on:
   # Runs on pushes targeting the default branch
@@ -27,12 +27,18 @@ jobs:
     strategy:
       matrix:
         java: [21]
-        os: [macos-latest]
-    runs-on: macos-latest
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+
+    env:
+      KOBWEB_CLI_VERSION: 0.9.13
     steps:
-      - name: Checking Out the Repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
-      - name: Validating the Gradle Wrapper
+      - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@v1
       - name: Setting up Java ${{ matrix.java }}
         uses: actions/setup-java@v4
@@ -40,10 +46,10 @@ jobs:
           distribution: 'zulu'
           java-version: ${{ matrix.java }}
           java-package: jdk
-      - name: Setting Up the Gradle Wrapper
+      - name: Set Up Gradle Wrapper
         if: ${{ runner.os != 'Windows' }}
         run: chmod +x ./gradlew
-      - name: Caching Dependencies
+      - name: Cache Dependencies
         uses: actions/cache@v3
         with:
           path: |
@@ -52,24 +58,36 @@ jobs:
           key: ${{ runner.os }}-gradle-#{{ hashFiles('**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: Fix Permissions
-        run: |
-          chmod -c -R +rX "site/.kobweb/site/" | while read line; do
-            echo "::warning title=Invalid file permissions automatically fixed::$line"
-          done
-      - name: Setup Homebrew
-        uses: Homebrew/actions/setup-homebrew@master
-      - name: Install Kobweb
-        run: brew install varabyte/tap/kobweb
-      - name: Export
-        working-directory: site
-        run: kobweb export --layout static
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v2
+      - name: Query Browser Cache ID
+        id: browser-cache-id
+        run: echo "value=$(./gradlew -q :site:kobwebBrowserCacheId)" >> $GITHUB_OUTPUT
+      - name: Cache Browser Dependencies
+        uses: actions/cache@v3
+        id: playwright-cache
         with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.browser-cache-id.outputs.value }}
+      - name: Fetch kobweb
+        uses: robinraju/release-downloader@v1.7
+        with:
+          repository: "varabyte/kobweb-cli"
+          tag: "v${{ env.KOBWEB_CLI_VERSION }}"
+          fileName: "kobweb-${{ env.KOBWEB_CLI_VERSION }}.zip"
+          tarBall: false
+          zipBall: false
+      - name: Unzip kobweb
+        run: unzip kobweb-${{ env.KOBWEB_CLI_VERSION }}.zip
+      - name: Run export
+        run: |
+          cd site
+          ../kobweb-${{ env.KOBWEB_CLI_VERSION }}
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: site
           path: "site/.kobweb/site/"
+          if-no-files-found: error
+          retention-days: 1
 
   # Deploys the exported site
   deploy:
@@ -79,7 +97,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
