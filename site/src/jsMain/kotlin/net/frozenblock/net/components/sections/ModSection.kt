@@ -10,6 +10,7 @@ import com.varabyte.kobweb.compose.css.functions.RadialGradient
 import com.varabyte.kobweb.compose.css.functions.radialGradient
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
+import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.graphics.Color
 import com.varabyte.kobweb.compose.ui.graphics.Colors
@@ -59,8 +60,8 @@ private fun ModItem(mod: Mod) {
                 .boxShadow(colorMode)
         )
     ) {
-        Column {
-            SpanText(mod.name, Modifier.fontWeight(FontWeight.Bold).margin(bottom = 0.75.cssRem).textAlign(TextAlign.Center))
+        Column(modifier = Modifier.textAlign(TextAlign.Center), horizontalAlignment = Alignment.CenterHorizontally) {
+            SpanText(mod.name, Modifier.fontWeight(FontWeight.Bold).margin(bottom = 0.75.cssRem))
             Image(mod.icon, width = 192, height = 192)
         }
     }
