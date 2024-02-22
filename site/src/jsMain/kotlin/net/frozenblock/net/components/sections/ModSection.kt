@@ -74,10 +74,10 @@ private fun ModItem(mod: Mod) {
 fun ModSection() {
     val mods = remember {
         listOf(
-            Mod("/wilder-wild", "Wilder Wild", "/wilder_wild.png"),
-            Mod("/configurable-everything", "Configurable Everything", "/configurable_everything.png"),
-            Mod("/geometry-dash", "Geometry Dash", "/geometry_dash.png"),
-            Mod("/frozenlib", "FrozenLib", "/frozenlib.png")
+            Mod("/wilder-wild", "Wilder Wild", "/mod/wilder_wild.png"),
+            Mod("/configurable-everything", "Configurable Everything", "/mod/configurable_everything.png"),
+            Mod("/geometry-dash", "Geometry Dash", "/mod/geometry_dash.png"),
+            Mod("/frozenlib", "FrozenLib", "/mod/frozenlib.png")
         )
     }
 
