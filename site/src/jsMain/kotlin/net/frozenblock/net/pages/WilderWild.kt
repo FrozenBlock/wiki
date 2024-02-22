@@ -35,16 +35,14 @@ private const val PAGE_URL = "wilder-wild"
 @Composable
 fun WilderWild() {
     PageLayout("Wilder Wild") {
-        val pages = remember {
-            listOf(
-                WikiPage("first wiki page", "/$PAGE_URL/first")
-            )
-        }
+        Row(NavHeaderStyle.toModifier(), verticalAlignment = Alignment.CenterVertically) {
+            var menuState by remember { mutableStateOf(SideMenuState.CLOSED) }
 
-        var menuState by remember { mutableStateOf(SideMenuState.CLOSED) }
+            PageList(pages, { menuState}) { state ->
+                menuState = state
+            }
 
-        PageList(pages, { menuState }) { state ->
-            menuState = state
+            Spacer()
         }
 
         WikiTitle("Wilder Wild Wiki")
