@@ -95,8 +95,7 @@ enum class SideMenuState {
 
     fun close() = when (this) {
         CLOSED -> CLOSED
-        OPEN -> CLOSING
-        CLOSING -> CLOSING
+        OPEN, CLOSING -> CLOSING
     }
 }
 

@@ -13,7 +13,6 @@ import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.core.Page
-import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.components.forms.Button
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
