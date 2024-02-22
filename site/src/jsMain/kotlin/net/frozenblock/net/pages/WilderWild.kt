@@ -3,6 +3,8 @@
 package net.frozenblock.net.pages
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
@@ -62,7 +64,7 @@ private fun WWPageList() {
         )
     }
 
-    var menuState by remember { mutableStateOf(SideMenuState.CLOSED) }
+    var menuState: MutableState<SideMenuState> by remember { mutableStateOf(SideMenuState.CLOSED) }
 
     PageList(pages, menuState)
 }

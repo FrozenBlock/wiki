@@ -3,7 +3,7 @@
 package net.frozenblock.net.components.sections
 
 import androidx.compose.runtime.Composable
-import androix.compose.runtime.MutableState
+import androidx.compose.runtime.MutableState
 import com.varabyte.kobweb.compose.css.WhiteSpace
 import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
