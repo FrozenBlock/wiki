@@ -35,6 +35,8 @@ import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import org.jetbrains.compose.web.css.*
 import net.frozenblock.net.components.widgets.IconButton
+import net.frozenblock.net.components.widgets.SideMenu
+import net.frozenblock.net.components.widgets.SideMenuState
 import net.frozenblock.net.toSitePalette
 
 val NavHeaderStyle by ComponentStyle.base {
@@ -64,37 +66,6 @@ private fun ColorModeButton() {
 private fun HamburgerButton(onClick: () -> Unit) {
     IconButton(onClick) {
         HamburgerIcon()
-    }
-}
-
-@Composable
-private fun CloseButton(onClick: () -> Unit) {
-    IconButton(onClick) {
-        CloseIcon()
-    }
-}
-
-val SideMenuSlideInAnim by Keyframes {
-    from {
-        Modifier.translateX(100.percent)
-    }
-
-    to {
-        Modifier
-    }
-}
-
-// Note: When the user closes the side menu, we don't immediately stop rendering it (at which point it would disappear
-// abruptly). Instead, we start animating it out and only stop rendering it when the animation is complete.
-enum class SideMenuState {
-    CLOSED,
-    OPEN,
-    CLOSING;
-
-    fun close() = when (this) {
-        CLOSED -> CLOSED
-        OPEN -> CLOSING
-        CLOSING -> CLOSING
     }
 }
 
@@ -130,45 +101,7 @@ fun NavHeader() {
                     menuState,
                     close = { menuState = menuState.close() },
                     onAnimationEnd = { if (menuState == SideMenuState.CLOSING) menuState = SideMenuState.CLOSED }
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun SideMenu(menuState: SideMenuState, close: () -> Unit, onAnimationEnd: () -> Unit) {
-    Overlay(
-        Modifier
-            .setVariable(OverlayVars.BackgroundColor, Colors.Transparent)
-            .onClick { close() }
-    ) {
-        key(menuState) { // Force recompute animation parameters when close button is clicked
-            Column(
-                Modifier
-                    .fillMaxHeight()
-                    .width(clamp(8.cssRem, 33.percent, 10.cssRem))
-                    .align(Alignment.CenterEnd)
-                    // Close button will appear roughly over the hamburger button, so the user can close
-                    // things without moving their finger / cursor much.
-                    .padding(top = 1.cssRem, leftRight = 1.cssRem)
-                    .gap(1.5.cssRem)
-                    .backgroundColor(ColorMode.current.toSitePalette().nearBackground)
-                    .animation(
-                        SideMenuSlideInAnim.toAnimation(
-                            duration = 200.ms,
-                            timingFunction = if (menuState == SideMenuState.OPEN) AnimationTimingFunction.EaseOut else AnimationTimingFunction.EaseIn,
-                            direction = if (menuState == SideMenuState.OPEN) AnimationDirection.Normal else AnimationDirection.Reverse,
-                            fillMode = AnimationFillMode.Forwards
-                        )
-                    )
-                    .borderRadius(topLeft = 2.cssRem)
-                    .onClick { it.stopPropagation() }
-                    .onAnimationEnd { onAnimationEnd() },
-                horizontalAlignment = Alignment.End
-            ) {
-                CloseButton(onClick = { close() })
-                Column(Modifier.padding(right = 0.75.cssRem).gap(1.5.cssRem).fontSize(1.4.cssRem), horizontalAlignment = Alignment.End) {
+                ) {
                     MenuItems()
                 }
             }
