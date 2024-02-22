@@ -26,7 +26,7 @@ private fun PageItem(page: WikiPage) {
 }
 
 @Composable
-fun PageList(pages: List<WikiPage>, menuState: MutableState<SideMenuState>) {
+fun PageList(pages: List<WikiPage>, menuState: () -> SideMenuState, onStateUpdate: (SideMenuState) -> Unit) {
     Row(NavHeaderStyle.toModifier(), verticalAlignment = Alignment.CenterVertically) {
         Row(
             Modifier
@@ -34,14 +34,14 @@ fun PageList(pages: List<WikiPage>, menuState: MutableState<SideMenuState>) {
                 .gap(1.cssRem),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            HamburgerButton(onClick = { menuState.value = SideMenuState.OPEN} )
+            HamburgerButton(onClick = { onStateUpdate(SideMenuState.OPEN) })
 
-            if (menuState.value != SideMenuState.CLOSED) {
+            if (menuState() != SideMenuState.CLOSED) {
                 SideMenu(
-                    menuState.value,
+                    menuState(),
                     side = Side.LEFT,
-                    close = { menuState.value = menuState.value.close() },
-                    onAnimationEnd = { if (menuState.value == SideMenuState.CLOSING) menuState.value = SideMenuState.CLOSED }
+                    close = { onStateUpdate(menuState().close()) },
+                    onAnimationEnd = { if (menuState() == SideMenuState.CLOSING) menuState() = SideMenuState.CLOSED }
                 ) {
                     pages.forEach { page -> PageItem(page) }
                 }

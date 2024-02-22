@@ -1,6 +1,6 @@
 @file:Suppress("FunctionName", "unused")
 
-package net.frozenblock.net.pages
+package net.frozenblock.net.components.widgets
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -26,35 +26,26 @@ import net.frozenblock.net.components.layouts.PageLayout
 import net.frozenblock.net.components.sections.PageList
 import net.frozenblock.net.components.sections.WikiPage
 import net.frozenblock.net.components.widgets.SideMenuState
-import net.frozenblock.net.components.widgets.WikiTitle
 import net.frozenblock.net.toSitePalette
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.Div
 
-private const val PAGE_URL = "wilder-wild"
-
-@Page
 @Composable
-fun WilderWild() {
-    PageLayout("Wilder Wild") {
-        WikiTitle("Wilder Wild Wiki")
-
-        WWPageList()
-    }
-}
-
-@Composable
-private fun WWPageList() {
-    val pages = remember {
-        listOf(
-            WikiPage("first wiki page", "/$PAGE_URL/first")
-        )
-    }
-
-    var menuState by remember { mutableStateOf(SideMenuState.CLOSED) }
-
-    PageList(pages, { menuState }) { state ->
-        menuState = state
+fun WikiTitle(title: String) {
+    Row(HeroContainerStyle.toModifier(), horizontalArrangement = Arrangement.Center) {
+        Box(contentAlignment = Alignment.Center) {
+            val sitePalette = ColorMode.current.toSitePalette()
+            Div(HeadlineTextStyle.toAttrs()) {
+                SpanText(
+                    title,
+                    Modifier
+                        .color(sitePalette.brand.primary)
+                        // Use a shadow so this light-colored word is more visible in light mode
+                        .textShadow(0.px, 0.px, blurRadius = 0.5.cssRem, color = Colors.Gray)
+                        .textAlign(TextAlign.Center)
+                )
+            }
+        }
     }
 }
