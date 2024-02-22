@@ -1,9 +1,10 @@
 package net.frozenblock.net.components.sections
 
 import androidx.compose.runtime.Composable
+import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.TextAlign
-import com.varabyte.kobweb.compose.css.WhiteSpace
 import com.varabyte.kobweb.compose.foundation.layout.Box
+import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
@@ -16,10 +17,10 @@ import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.components.style.vars.color.ColorVar
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import net.frozenblock.net.toSitePalette
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.dom.Span
-import net.frozenblock.net.toSitePalette
 
 val FooterStyle by ComponentStyle.base {
     Modifier
@@ -30,16 +31,19 @@ val FooterStyle by ComponentStyle.base {
 @Composable
 fun Footer(modifier: Modifier = Modifier) {
     Box(FooterStyle.toModifier().then(modifier), contentAlignment = Alignment.Center) {
-        Span(Modifier.textAlign(TextAlign.Center).toAttrs()) {
-            val sitePalette = ColorMode.current.toSitePalette()
-            SpanText("FrozenBlock is not approved by nor affiliated with ")
-            Link(
-                "https://www.minecraft.net/en-us",
-                "Mojang Studios",
-                Modifier.setVariable(ColorVar, sitePalette.brand.accent),
-                variant = UncoloredLinkVariant
-            )
-            SpanText(".")
+        Column {
+            Span(Modifier.textAlign(TextAlign.Center).toAttrs()) {
+                val sitePalette = ColorMode.current.toSitePalette()
+                SpanText("FrozenBlock is not approved by nor affiliated with ")
+                Link(
+                    "https://www.minecraft.net/en-us",
+                    "Mojang Studios",
+                    Modifier.setVariable(ColorVar, sitePalette.brand.accent)
+                        .fontWeight(FontWeight.Bold),
+                    variant = UncoloredLinkVariant
+                )
+                SpanText(".")
+            }
         }
     }
 }
