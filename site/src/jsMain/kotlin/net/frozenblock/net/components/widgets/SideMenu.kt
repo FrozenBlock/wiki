@@ -96,7 +96,10 @@ fun SideMenu(
                     .borderRadius(topLeft = 2.cssRem)
                     .onClick { it.stopPropagation() }
                     .onAnimationEnd { onAnimationEnd() },
-                horizontalAlignment = Alignment.End
+                horizontalAlignment = when (side) {
+                    Side.LEFT -> Alignment.Start
+                    Side.RIGHT -> Alignment.End
+                }
             ) {
                 if (closeable) CloseButton(onClick = { close() })
                 Column(Modifier.padding(right = 0.75.cssRem).gap(1.5.cssRem).fontSize(1.4.cssRem), horizontalAlignment = Alignment.End, content = content)
