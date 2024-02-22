@@ -25,6 +25,7 @@ import net.frozenblock.net.HeadlineTextStyle
 import net.frozenblock.net.components.layouts.PageLayout
 import net.frozenblock.net.components.sections.PageList
 import net.frozenblock.net.components.sections.WikiPage
+import net.frozenblock.net.components.widgets.SideMenuState
 import net.frozenblock.net.toSitePalette
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
