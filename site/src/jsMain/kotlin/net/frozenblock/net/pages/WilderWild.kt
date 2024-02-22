@@ -62,5 +62,7 @@ private fun WWPageList() {
         )
     }
 
-    PageList(pages)
+    var menuState by remember { mutableStateOf(SideMenuState.CLOSED) }
+
+    PageList(pages, menuState)
 }

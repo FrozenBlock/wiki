@@ -19,8 +19,26 @@ private fun PageItem(page: WikiPage) {
 }
 
 @Composable
-fun PageList(pages: List<WikiPage>) {
-    SideMenu(side = Side.LEFT, closeable = false) {
-        pages.forEach { page -> PageItem(page) }
+fun PageList(pages: List<WikiPage>, menuState: MutableState<SideMenuState>) {
+    Row(NavHeaderStyle.toModifier(), verticalAlignment = Alignment.CenterVertically) {
+        Row(
+            Modifier
+                .fontSize(1.5.cssRem)
+                .gap(1.cssRem),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            HamburgerButton(onClick = { menuState.value = SideMenuState.OPEN} )
+
+            if (menuState.value != SideMenuState.CLOSED) {
+                SideMenu(
+                    menuState.value,
+                    side = Side.LEFT,
+                    close = { menuState.value = menuState.value.close() },
+                    onAnimationEnd = { if (menuState.value == SideMenuState.CLOSING) menuState.value = SideMenuState.CLOSED }
+                ) {
+                    pages.forEach { page -> PageItem(page) }
+                }
+            }
+        }
     }
 }
