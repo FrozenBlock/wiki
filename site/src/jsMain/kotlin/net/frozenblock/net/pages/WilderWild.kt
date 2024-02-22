@@ -2,7 +2,7 @@
 
 package net.frozenblock.net.pages
 
-import androidx.compose.runtime.*)
+import androidx.compose.runtime.*
 import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
