@@ -3,6 +3,7 @@
 package net.frozenblock.net.components.sections
 
 import androidx.compose.runtime.Composable
+import androix.compose.runtime.MutableState
 import com.varabyte.kobweb.compose.css.WhiteSpace
 import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
@@ -11,6 +12,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.navigation.UncoloredLinkVariant
 import com.varabyte.kobweb.silk.components.style.toModifier
+import net.frozenblock.net.components.widgets.HamburgerButton
 import net.frozenblock.net.components.widgets.Side
 import net.frozenblock.net.components.widgets.SideMenu
 import net.frozenblock.net.components.widgets.SideMenuState
