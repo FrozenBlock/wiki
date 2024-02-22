@@ -4,12 +4,17 @@ package net.frozenblock.net.components.sections
 
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.css.WhiteSpace
+import com.varabyte.kobweb.compose.foundation.layout.Row
+import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.modifiers.whiteSpace
+import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.navigation.UncoloredLinkVariant
+import com.varabyte.kobweb.silk.components.style.toModifier
 import net.frozenblock.net.components.widgets.Side
 import net.frozenblock.net.components.widgets.SideMenu
+import net.frozenblock.net.components.widgets.SideMenuState
+import org.jetbrains.compose.web.css.cssRem
 
 class WikiPage(val title: String, val link: String)
 
