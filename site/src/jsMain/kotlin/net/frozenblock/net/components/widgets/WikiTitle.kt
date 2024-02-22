@@ -30,7 +30,10 @@ import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.Div
 
 @Composable
-fun WikiTitle(title: String) {
+fun WikiTitle(
+    title: String,
+    content: @Composable () -> Unit = {},
+) {
     Row(HeroContainerStyle.toModifier(), horizontalArrangement = Arrangement.Center) {
         Box(contentAlignment = Alignment.Center) {
             val sitePalette = ColorMode.current.toSitePalette()
@@ -44,6 +47,7 @@ fun WikiTitle(title: String) {
                         .textAlign(TextAlign.Center)
                 )
             }
+            content()
         }
     }
 }
