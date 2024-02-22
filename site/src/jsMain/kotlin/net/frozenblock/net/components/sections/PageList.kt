@@ -27,12 +27,12 @@ private fun PageItem(page: WikiPage) {
 
 @Composable
 fun PageList(pages: List<WikiPage>, menuState: () -> SideMenuState, onStateUpdate: (SideMenuState) -> Unit) {
-    Row(NavHeaderStyle.toModifier(), verticalAlignment = Alignment.CenterVertically) {
+    Row(NavHeaderStyle.toModifier(), verticalAlignment = Alignment.Top) {
         Row(
             Modifier
                 .fontSize(1.5.cssRem)
                 .gap(1.cssRem),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.Top
         ) {
             HamburgerButton(onClick = { onStateUpdate(SideMenuState.OPEN) })
 
