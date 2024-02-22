@@ -37,6 +37,11 @@ fun CloseButton(onClick: () -> Unit) {
     }
 }
 
+enum class Side {
+    LEFT,
+    RIGHT
+}
+
 // Note: When the user closes the side menu, we don't immediately stop rendering it (at which point it would disappear
 // abruptly). Instead, we start animating it out and only stop rendering it when the animation is complete.
 enum class SideMenuState {
@@ -53,6 +58,8 @@ enum class SideMenuState {
 @Composable
 fun SideMenu(
     menuState: SideMenuState = SideMenuState.OPEN,
+    side: Side = Side.RIGHT,
+    closeable: Boolean = true,
     close: () -> Unit = {},
     onAnimationEnd: () -> Unit = {},
     content: @Composable ColumnScope.() -> Unit
@@ -67,7 +74,12 @@ fun SideMenu(
                 Modifier
                     .fillMaxHeight()
                     .width(clamp(8.cssRem, 33.percent, 10.cssRem))
-                    .align(Alignment.CenterEnd)
+                    .align(
+                        when (side) {
+                            Side.LEFT -> Alignment.CenterStart
+                            Side.RIGHT -> Alignment.CenterEnd
+                        }
+                    )
                     // Close button will appear roughly over the hamburger button, so the user can close
                     // things without moving their finger / cursor much.
                     .padding(top = 1.cssRem, leftRight = 1.cssRem)
@@ -86,7 +98,7 @@ fun SideMenu(
                     .onAnimationEnd { onAnimationEnd() },
                 horizontalAlignment = Alignment.End
             ) {
-                CloseButton(onClick = { close() })
+                if (closeable) CloseButton(onClick = { close() })
                 Column(Modifier.padding(right = 0.75.cssRem).gap(1.5.cssRem).fontSize(1.4.cssRem), horizontalAlignment = Alignment.End, content = content)
             }
         }

@@ -39,33 +39,6 @@ val HeroContainerStyle by ComponentStyle {
     Breakpoint.MD { Modifier.margin { top(20.vh) } }
 }
 
-// A demo grid that appears on the homepage because it looks good
-val HomeGridStyle by ComponentStyle.base {
-    Modifier
-        .gap(0.5.cssRem)
-        .width(70.cssRem)
-        .height(18.cssRem)
-}
-
-private val GridCellColorVar by StyleVariable<Color>()
-val HomeGridCellStyle by ComponentStyle.base {
-    Modifier
-        .backgroundColor(GridCellColorVar.value())
-        .boxShadow(blurRadius = 0.6.cssRem, color = GridCellColorVar.value())
-        .borderRadius(1.cssRem)
-}
-
-@Composable
-private fun GridCell(color: Color, row: Int, column: Int, width: Int? = null, height: Int? = null, content: ContentBuilder<HTMLDivElement>? = null) {
-    Div(
-        HomeGridCellStyle.toModifier()
-            .setVariable(GridCellColorVar, color)
-            .gridItem(row, column, width, height)
-            .toAttrs(),
-        content
-    )
-}
-
 @Page
 @Composable
 fun HomePage() {

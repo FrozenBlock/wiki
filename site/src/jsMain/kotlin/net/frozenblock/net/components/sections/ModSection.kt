@@ -27,6 +27,7 @@ import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import net.frozenblock.net.components.style.background
 import net.frozenblock.net.components.style.boxShadow
 import net.frozenblock.net.toSitePalette
+import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.em
 import org.jetbrains.compose.web.css.px
@@ -45,6 +46,7 @@ private fun ModItem(mod: Mod) {
     Link(mod.link,
         ModItemStyle.toModifier().then(
             Modifier
+                .display(DisplayStyle.InlineBlock)
                 .color(sitePalette.brand.primary)
                 .textShadow(0.px, 0.px, blurRadius = 0.15.cssRem, color = Colors.Gray)
         ),
