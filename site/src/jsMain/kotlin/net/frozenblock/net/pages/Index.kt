@@ -99,15 +99,10 @@ fun HomePage() {
                         SpanText(" page for more information.")
                     }
 
-                    val ctx = rememberPageContext()
-                    Button(onClick = {
-                        // Change this click handler with your call-to-action behavior
-                        // here. Link to an order page? Open a calendar UI? Play a movie?
-                        // Up to you!
-                        ctx.router.navigateTo("https://modrinth.com/organization/frozenblock")
-                        //ctx.router.tryRoutingTo("/about")
-                    }, colorScheme = ColorSchemes.LightBlue) {
-                        Text("Download mods")
+                    Link("https://modrinth.com/organization/frozenblock") {
+                        Button(onClick = {}, colorScheme = ColorSchemes.LightBlue) {
+                            Text("Download mods")
+                        }
                     }
                 }
             }
