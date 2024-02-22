@@ -37,21 +37,16 @@ fun WilderWild() {
     PageLayout("Wilder Wild") {
         WikiTitle("Wilder Wild Wiki")
 
-        WWPageList()
-    }
-}
+        val pages = remember {
+            listOf(
+                WikiPage("first wiki page", "/$PAGE_URL/first")
+            )
+        }
 
-@Composable
-private fun WWPageList() {
-    val pages = remember {
-        listOf(
-            WikiPage("first wiki page", "/$PAGE_URL/first")
-        )
-    }
+        var menuState by remember { mutableStateOf(SideMenuState.CLOSED) }
 
-    var menuState by remember { mutableStateOf<SideMenuState>(SideMenuState.CLOSED) }
-
-    PageList(pages, { menuState }) { state ->
-        menuState = state
+        PageList(pages, { menuState }) { state ->
+            menuState = state
+        }
     }
 }
