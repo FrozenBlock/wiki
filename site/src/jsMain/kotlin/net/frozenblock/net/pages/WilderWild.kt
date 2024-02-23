@@ -7,6 +7,7 @@ import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Row
+import com.varabyte.kobweb.compose.foundation.layout.Spacer
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.graphics.Colors
@@ -20,6 +21,7 @@ import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import net.frozenblock.net.HeadlineTextStyle
 import net.frozenblock.net.components.layouts.PageLayout
+import net.frozenblock.net.components.sections.NavHeaderStyle
 import net.frozenblock.net.components.sections.PageList
 import net.frozenblock.net.components.sections.WikiPage
 import net.frozenblock.net.components.widgets.SideMenuState
@@ -36,6 +38,12 @@ private const val PAGE_URL = "wilder-wild"
 fun WilderWild() {
     PageLayout("Wilder Wild") {
         Row(NavHeaderStyle.toModifier(), verticalAlignment = Alignment.CenterVertically) {
+            val pages = remember {
+                listOf(
+                    WikiPage("first wiki page", "/$PAGE_URL/first")
+                )
+            }
+
             var menuState by remember { mutableStateOf(SideMenuState.CLOSED) }
 
             PageList(pages, { menuState}) { state ->
