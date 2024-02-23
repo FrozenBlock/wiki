@@ -8,8 +8,8 @@ import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import org.jetbrains.compose.web.css.px
 
 @Composable
-fun Modifier.boxShadow(colorMode: ColorMode) = run {
-    boxShadow(spreadRadius = 1.px, color = when (colorMode) {
+fun Modifier.boxShadow(colorMode: ColorMode, radius: Int = 1) = run {
+    boxShadow(spreadRadius = radius.px, color = when (colorMode) {
         ColorMode.DARK -> Color.Companion.rgba(238, 238, 238, 0.2f)
         ColorMode.LIGHT -> Color.Companion.rgba(17, 17, 17, 0.2f)
     })

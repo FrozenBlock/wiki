@@ -24,6 +24,7 @@ import com.varabyte.kobweb.silk.components.style.base
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import net.frozenblock.net.components.style.boxShadow
 import net.frozenblock.net.components.widgets.HamburgerButton
 import net.frozenblock.net.components.widgets.IconButton
 import net.frozenblock.net.components.widgets.SideMenu
@@ -56,7 +57,8 @@ private fun ColorModeButton() {
 
 @Composable
 fun NavHeader() {
-    Row(NavHeaderStyle.toModifier(), verticalAlignment = Alignment.CenterVertically) {
+    val colorMode by ColorMode.currentState
+    Row(NavHeaderStyle.toModifier().then(Modifier.boxShadow(colorMode, 2)), verticalAlignment = Alignment.CenterVertically) {
         Link("/") {
             // Block display overrides inline display of the <img> tag, so it calculates centering better
             Image("/fb_banner_transparent.png", "FrozenBlock Logo", Modifier.height(5.cssRem).display(DisplayStyle.Block))
