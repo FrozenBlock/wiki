@@ -16,7 +16,8 @@ fun config_every(): List<WikiPage> {
     val pages = remember {
         listOf(
             WikiPage("Home", PAGE_URL),
-            WikiPage("first wiki page", page("first"))
+            WikiPage("DataFixer Config", page("datafixer")),
+            WikiPage("Scripting", page("scripting"))
         )
     }
     return pages
