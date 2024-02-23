@@ -90,12 +90,12 @@ fun PageLayout(title: String, content: @Composable ColumnScope.() -> Unit) {
             // Some people might have used z-index instead, but best practice is to avoid that if possible, because
             // as a site gets complex, Z-fighting can be a huge pain to track down.
             Modifier.fillMaxSize().gridRow(1),
-            horizontalAlignment = Alignment.CenterHorizontally,
+            //horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             NavHeader()
             Column(
                 PageContentStyle.toModifier(),
-                horizontalAlignment = Alignment.CenterHorizontally
+                //horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 content()
             }
