@@ -15,7 +15,7 @@ private inline fun page(path: String): String = "/$PAGE_URL/$path"
 fun config_every(): List<WikiPage> {
     val pages = remember {
         listOf(
-            WikiPage("Home", PAGE_URL),
+            WikiPage("Home", "/$PAGE_URL"),
             WikiPage("DataFixer Config", page("datafixer")),
             WikiPage("Scripting", page("scripting"))
         )

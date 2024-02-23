@@ -15,7 +15,7 @@ private inline fun page(path: String): String = "/$PAGE_URL/$path"
 fun wilderwild(): List<WikiPage> {
     val pages = remember {
         listOf(
-            WikiPage("Home", PAGE_URL),
+            WikiPage("Home", "/$PAGE_URL"),
             WikiPage("first wiki page", page("first"))
         )
     }

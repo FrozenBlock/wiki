@@ -26,8 +26,7 @@ private fun PageItem(page: WikiPage) {
         page.link,
         page.title,
         modifier = Modifier.whiteSpace(WhiteSpace.NoWrap),
-        variant = UncoloredLinkVariant,
-        autoPrefix = false,
+        variant = UncoloredLinkVariant
     )
 }
 
