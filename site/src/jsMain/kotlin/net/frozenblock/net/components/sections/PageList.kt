@@ -12,6 +12,8 @@ import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.navigation.UncoloredLinkVariant
 import com.varabyte.kobweb.silk.components.style.toModifier
+import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import net.frozenblock.net.components.style.boxShadow
 import net.frozenblock.net.components.widgets.HamburgerButton
 import net.frozenblock.net.components.widgets.Side
 import net.frozenblock.net.components.widgets.SideMenu
@@ -21,11 +23,11 @@ import org.jetbrains.compose.web.css.cssRem
 class WikiPage(val title: String, val link: String)
 
 @Composable
-private fun PageItem(page: WikiPage) {
+private fun PageItem(page: WikiPage, colorMode: ColorMode) {
     Link(
         page.link,
         page.title,
-        modifier = Modifier.whiteSpace(WhiteSpace.NoWrap),
+        modifier = Modifier.whiteSpace(WhiteSpace.NoWrap).boxShadow(colorMode),
         variant = UncoloredLinkVariant
     )
 }
@@ -45,10 +47,12 @@ fun PageList(pages: List<WikiPage>, menuState: () -> SideMenuState, onStateUpdat
                 SideMenu(
                     menuState(),
                     side = Side.LEFT,
+                    size = 2.0,
                     close = { onStateUpdate(menuState().close()) },
-                    onAnimationEnd = { if (menuState() == SideMenuState.CLOSING) onStateUpdate(SideMenuState.CLOSED) }
+                    onAnimationEnd = { if (menuState() == SideMenuState.CLOSING) onStateUpdate(SideMenuState.CLOSED) },
                 ) {
-                    pages.forEach { page -> PageItem(page) }
+                    val colorMode by ColorMode.currentState
+                    pages.forEach { page -> PageItem(page, colorMode) }
                 }
             }
         }

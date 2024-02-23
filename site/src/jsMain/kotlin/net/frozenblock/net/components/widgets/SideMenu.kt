@@ -59,6 +59,7 @@ enum class SideMenuState {
 fun SideMenu(
     menuState: SideMenuState = SideMenuState.OPEN,
     side: Side = Side.RIGHT,
+    size: Double = 1.0,
     closeable: Boolean = true,
     close: () -> Unit = {},
     onAnimationEnd: () -> Unit = {},
@@ -73,7 +74,7 @@ fun SideMenu(
             Column(
                 Modifier
                     .fillMaxHeight()
-                    .width(clamp(8.cssRem, 33.percent, 10.cssRem))
+                    .width(clamp((8 * size).cssRem, 33.percent, (10 * size).cssRem))
                     .align(
                         when (side) {
                             Side.LEFT -> Alignment.CenterStart
