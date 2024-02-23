@@ -80,7 +80,7 @@ fun PageLayout(title: String, content: @Composable ColumnScope.() -> Unit) {
             // Grids are powerful but have a bit of a learning curve. For more info, see:
             // https://css-tricks.com/snippets/css/complete-guide-grid/
             .gridTemplateRows { size(1.fr); size(minContent) },
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.TopCenter
     ) {
         //SvgCobweb(Modifier.gridRow(1).align(Alignment.TopStart))
         Column(
