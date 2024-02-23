@@ -107,7 +107,7 @@ private fun SocialBar() {
     }
 
     SimpleGrid(
-        numColumns(1, md = 3, lg = 5),
+        numColumns(3, lg = 5),
         Modifier
             .padding(2.cssRem)
             .gap(1.5.cssRem)
