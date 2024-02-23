@@ -40,11 +40,6 @@ val HeroContainerStyle by ComponentStyle {
     Breakpoint.MD { Modifier.margin { top(20.vh) } }
 }
 
-// TODO: Convert to variant
-val TopHeroContainerStyle by ComponentStyle.base {
-    Modifier.fillMaxWidth().gap(2.cssRem)
-}
-
 @Page
 @Composable
 fun HomePage() {

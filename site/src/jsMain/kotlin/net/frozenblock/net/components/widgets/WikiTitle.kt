@@ -23,7 +23,7 @@ import net.frozenblock.net.components.layouts.PageLayout
 import net.frozenblock.net.components.sections.PageList
 import net.frozenblock.net.components.sections.WikiPage
 import net.frozenblock.net.components.widgets.SideMenuState
-import net.frozenblock.net.pages.TopHeroContainerStyle
+import net.frozenblock.net.pages.HeroContainerStyle
 import net.frozenblock.net.toSitePalette
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
@@ -34,7 +34,7 @@ fun WikiTitle(
     title: String,
     content: @Composable () -> Unit = {},
 ) {
-    Row(TopHeroContainerStyle.toModifier(), horizontalArrangement = Arrangement.Center) {
+    Row(HeroContainerStyle.toModifier(), horizontalArrangement = Arrangement.Center) {
         Box(contentAlignment = Alignment.Center) {
             val sitePalette = ColorMode.current.toSitePalette()
             Div(HeadlineTextStyle.toAttrs()) {
