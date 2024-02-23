@@ -7,6 +7,7 @@ import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.setVariable
 import com.varabyte.kobweb.silk.components.forms.Button
 import com.varabyte.kobweb.silk.components.forms.ButtonVars
+import com.varabyte.kobweb.silk.components.icons.HamburgerIcon
 import net.frozenblock.net.CircleButtonVariant
 import net.frozenblock.net.UncoloredButtonVariant
 import org.jetbrains.compose.web.css.em
@@ -19,5 +20,12 @@ fun IconButton(onClick: () -> Unit, content: @Composable () -> Unit) {
         variant = CircleButtonVariant.then(UncoloredButtonVariant),
     ) {
         content()
+    }
+}
+
+@Composable
+fun HamburgerButton(onClick: () -> Unit) {
+    IconButton(onClick) {
+        HamburgerIcon()
     }
 }
