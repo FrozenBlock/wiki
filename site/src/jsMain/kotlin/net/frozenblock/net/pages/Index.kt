@@ -40,8 +40,9 @@ val HeroContainerStyle by ComponentStyle {
     Breakpoint.MD { Modifier.margin { top(20.vh) } }
 }
 
-val TopHeroVariant by HeroContainerStyle.addVariantBase {
-    Breakpoint.MD { Modifier.margin { top(0.vh) } }
+// TODO: Convert to variant
+val TopHeroContainerStyle by ComponentStyle.base {
+    Modifier.fillMaxWidth().gap(2.cssRem)
 }
 
 @Page
