@@ -25,7 +25,7 @@ import net.frozenblock.net.components.sections.NavHeader
 import net.frozenblock.net.toSitePalette
 
 val PageContentStyle by ComponentStyle {
-    base { Modifier.fillMaxSize().padding(leftRight = 2.cssRem, top = 1.5.cssRem) }
+    base { Modifier.fillMaxSize().padding(leftRight = 2.cssRem, /*top = 4.0.cssRem)*/ }
     Breakpoint.MD { Modifier.maxWidth(60.cssRem) }
 }
 
