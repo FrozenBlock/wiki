@@ -3,3 +3,8 @@ root: .components.layouts.WikiLayout("Geometry Dash Wiki", net.frozenblock.net.p
 ---
 
 {{{ net.frozenblock.net.components.widgets.WikiTitle("Geometry Dash Wiki") }}}
+
+---
+&nbsp;  
+
+Welcome to the Geometry Dash wiki!

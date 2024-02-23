@@ -64,7 +64,11 @@ private fun SvgCobweb(modifier: Modifier) {
 }*/
 
 @Composable
-fun PageLayout(title: String, content: @Composable ColumnScope.() -> Unit) {
+fun PageLayout(
+    title: String,
+    hamburgerContent: @Composable () -> Unit = {},
+    content: @Composable ColumnScope.() -> Unit,
+) {
     LaunchedEffect(title) {
         document.title = title
     }
@@ -92,7 +96,7 @@ fun PageLayout(title: String, content: @Composable ColumnScope.() -> Unit) {
             Modifier.fillMaxSize().gridRow(1),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            NavHeader()
+            NavHeader(hamburgerContent)
             Column(
                 PageContentStyle.toModifier(),
                 horizontalAlignment = Alignment.CenterHorizontally

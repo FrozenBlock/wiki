@@ -4,3 +4,8 @@ routeOverride: frozenlib
 ---
 
 {{{ net.frozenblock.net.components.widgets.WikiTitle("FrozenLib Wiki") }}}
+
+---
+&nbsp;
+
+Welcome to the FrozenLib wiki!

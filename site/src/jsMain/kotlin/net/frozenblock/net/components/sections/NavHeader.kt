@@ -56,7 +56,7 @@ private fun ColorModeButton() {
 }
 
 @Composable
-fun NavHeader() {
+fun NavHeader(hamburgerContent: @Composable () -> Unit) {
     val colorMode by ColorMode.currentState
     Row(NavHeaderStyle.toModifier().then(Modifier.boxShadow(colorMode, 2)), verticalAlignment = Alignment.CenterVertically) {
         Link("/") {
@@ -66,16 +66,10 @@ fun NavHeader() {
 
         Spacer()
 
-        Row(Modifier.gap(1.5.cssRem).displayIfAtLeast(Breakpoint.MD), verticalAlignment = Alignment.CenterVertically) {
-            MenuItems()
-            ColorModeButton()
-        }
-
         Row(
             Modifier
-                .fontSize(1.5.cssRem)
-                .gap(1.cssRem)
-                .displayUntil(Breakpoint.MD),
+                .fontSize(1.9.cssRem)
+                .gap(1.cssRem),
             verticalAlignment = Alignment.CenterVertically
         ) {
             var menuState by remember { mutableStateOf(SideMenuState.CLOSED) }
@@ -86,10 +80,12 @@ fun NavHeader() {
             if (menuState != SideMenuState.CLOSED) {
                 SideMenu(
                     menuState,
+                    size = 1.5,
                     close = { menuState = menuState.close() },
                     onAnimationEnd = { if (menuState == SideMenuState.CLOSING) menuState = SideMenuState.CLOSED }
                 ) {
                     MenuItems()
+                    hamburgerContent()
                 }
             }
         }

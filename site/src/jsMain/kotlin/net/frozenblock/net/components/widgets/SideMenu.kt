@@ -103,7 +103,16 @@ fun SideMenu(
                 }
             ) {
                 if (closeable) CloseButton(onClick = { close() })
-                Column(Modifier.padding(right = 0.75.cssRem).gap(1.5.cssRem).fontSize(1.4.cssRem), horizontalAlignment = Alignment.End, content = content)
+                Column(
+                    Modifier.padding(right = 0.5.cssRem)
+                        .gap(1.5.cssRem)
+                        .fontSize(1.2.cssRem),
+                    horizontalAlignment = when (side) {
+                        Side.RIGHT -> Alignment.End
+                        Side.LEFT -> Alignment.Start
+                    },
+                    content = content
+                )
             }
         }
     }

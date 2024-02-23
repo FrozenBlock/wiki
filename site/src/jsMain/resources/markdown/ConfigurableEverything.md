@@ -5,6 +5,7 @@ root: .components.layouts.WikiLayout("Configurable Everything Wiki", net.frozenb
 {{{ net.frozenblock.net.components.widgets.WikiTitle("Configurable Everything Wiki") }}}
 
 ---
+&nbsp;  
 
 Welcome to the Configurable Everything wiki!
 
