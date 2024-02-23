@@ -37,7 +37,7 @@ import org.w3c.dom.HTMLDivElement
 // Container that has a tagline and grid on desktop, and just the tagline on mobile
 val HeroContainerStyle by ComponentStyle {
     base { Modifier.fillMaxWidth().gap(2.cssRem) }
-    Breakpoint.MD { Modifier.margin { top(20.vh) } }
+    //Breakpoint.MD { Modifier.margin { top(20.vh) } }
 }
 
 @Page
