@@ -8,4 +8,5 @@ routeOverride: frozenlib
 ---
 &nbsp;
 
-Welcome to the FrozenLib wiki!
+Welcome to the FrozenLib wiki!  
+Press the menu button in the top right corner to select a page.
