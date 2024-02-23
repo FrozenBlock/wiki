@@ -39,6 +39,10 @@ val HeroContainerStyle by ComponentStyle {
     Breakpoint.MD { Modifier.margin { top(20.vh) } }
 }
 
+val TopHeroVariant by  HeroContainerStyle.addVariantBase {
+    Breakpoint.MD { Modifier.margin() }
+}
+
 @Page
 @Composable
 fun HomePage() {
