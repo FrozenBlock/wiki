@@ -22,7 +22,13 @@ class WikiPage(val title: String, val link: String)
 
 @Composable
 private fun PageItem(page: WikiPage) {
-    Link(page.link, page.title, modifier = Modifier.whiteSpace(WhiteSpace.NoWrap), variant = UncoloredLinkVariant)
+    Link(
+        page.link,
+        page.title,
+        modifier = Modifier.whiteSpace(WhiteSpace.NoWrap),
+        variant = UncoloredLinkVariant,
+        autoPrefix = false,
+    )
 }
 
 @Composable
