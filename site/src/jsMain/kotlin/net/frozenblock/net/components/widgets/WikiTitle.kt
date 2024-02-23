@@ -35,7 +35,7 @@ fun WikiTitle(
     content: @Composable () -> Unit = {},
 ) {
     Row(HeroContainerStyle.toModifier(), horizontalArrangement = Arrangement.Center) {
-        Box(contentAlignment = Alignment.Center) {
+        Box(contentAlignment = Alignment.TopCenter) {
             val sitePalette = ColorMode.current.toSitePalette()
             Div(HeadlineTextStyle.toAttrs()) {
                 SpanText(
