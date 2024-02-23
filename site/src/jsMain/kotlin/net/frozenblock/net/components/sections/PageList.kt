@@ -47,7 +47,7 @@ fun PageList(pages: List<WikiPage>, menuState: () -> SideMenuState, onStateUpdat
                 SideMenu(
                     menuState(),
                     side = Side.LEFT,
-                    size = 2.0,
+                    size = 1.5,
                     close = { onStateUpdate(menuState().close()) },
                     onAnimationEnd = { if (menuState() == SideMenuState.CLOSING) onStateUpdate(SideMenuState.CLOSED) },
                 ) {
