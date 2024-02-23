@@ -25,7 +25,7 @@ import net.frozenblock.net.components.sections.NavHeader
 import net.frozenblock.net.toSitePalette
 
 val PageContentStyle by ComponentStyle {
-    base { Modifier.fillMaxSize().padding(leftRight = 2.cssRem, top = 4.cssRem) }
+    base { Modifier.fillMaxSize().padding(leftRight = 2.cssRem, top = 1.5.cssRem) }
     Breakpoint.MD { Modifier.maxWidth(60.cssRem) }
 }
 
@@ -90,12 +90,12 @@ fun PageLayout(title: String, content: @Composable ColumnScope.() -> Unit) {
             // Some people might have used z-index instead, but best practice is to avoid that if possible, because
             // as a site gets complex, Z-fighting can be a huge pain to track down.
             Modifier.fillMaxSize().gridRow(1),
-            //horizontalAlignment = Alignment.CenterHorizontally,
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             NavHeader()
             Column(
                 PageContentStyle.toModifier(),
-                //horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 content()
             }
