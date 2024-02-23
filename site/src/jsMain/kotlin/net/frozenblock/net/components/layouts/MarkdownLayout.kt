@@ -1,10 +1,14 @@
+@file:Suppress("FunctionName")
+
 package net.frozenblock.net.components.layouts
 
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.Overflow
 import com.varabyte.kobweb.compose.css.OverflowWrap
 import com.varabyte.kobweb.compose.foundation.layout.Column
+import com.varabyte.kobweb.compose.foundation.layout.Row
+import com.varabyte.kobweb.compose.foundation.layout.Spacer
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
@@ -12,6 +16,10 @@ import com.varabyte.kobweb.silk.components.style.ComponentStyle
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.palette.color
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
+import net.frozenblock.net.components.sections.NavHeaderStyle
+import net.frozenblock.net.components.sections.PageList
+import net.frozenblock.net.components.sections.WikiPage
+import net.frozenblock.net.components.widgets.SideMenuState
 import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.LineStyle
 import org.jetbrains.compose.web.css.cssRem
@@ -94,5 +102,23 @@ fun MarkdownLayout(title: String, content: @Composable () -> Unit) {
         Column(MarkdownStyle.toModifier().fillMaxSize(), horizontalAlignment = Alignment.Start) {
             content()
         }
+    }
+}
+
+@Composable
+inline fun WikiLayout(title: String, pages: List<WikiPage>, crossinline content: @Composable () -> Unit) {
+    MarkdownLayout(title) {
+        Row(NavHeaderStyle.toModifier(), verticalAlignment = Alignment.CenterVertically) {
+
+            var menuState by remember { mutableStateOf(SideMenuState.CLOSED) }
+
+            PageList(pages, { menuState}) { state ->
+                menuState = state
+            }
+
+            Spacer()
+        }
+
+        content()
     }
 }
