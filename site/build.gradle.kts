@@ -13,7 +13,7 @@ version = "1.0-SNAPSHOT"
 kobweb {
     app {
         index {
-            description.set("FrozenBlock!")
+            description.set("Wiki for FrozenBlock's mods")
         }
     }
 }
