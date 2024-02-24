@@ -6,8 +6,6 @@ root: .components.layouts.WikiLayout("Scripting", net.frozenblock.net.pages.conf
 
 ---
 
-This page is not complete and is scheduled for update 1.1
-
 # About
 Scripting gives players the ability to modify the game via Kotlin code that is run when the game is initializing.
 
@@ -46,8 +44,6 @@ To enable remapping, enable `remapping` in the Scripting config. It will require
 
 ## Add a Block
 
-This is only possible in 1.1.
-
 A block can be added by adding the following code to a script
 ```kotlin
 Registry.register(BuiltInRegistries.BLOCK, ResourceLocation(“example:block”), Block(Properties.of()))
@@ -58,18 +54,61 @@ To use the properties of another block, replace `Properties.of()` with `Properti
 
 ## Add an Item
 
-This is only possible in 1.1.
+An item can be added by adding the following code to a script
+```kotlin
+Registry.register(BuiltInRegistries.ITEM, ResourceLocation("example:item"), Item(Item.Properties()))`
+```
 
-## Config modifications
+## Config access and mutating
 
-This is only possible in 1.1.
+Configurable Everything has its own config scripting API.
 
+Config accessors and mutators can be found in `ConfigData`.  
+Each config has its own `ConfigData` object, such as `ConfigData.MAIN` or `ConfigData.BIOME_PLACEMENT`  
+However, the Mixins config does not have a `ConfigData` object as it cannot be modified and is useless to access. It is also important to note that `ConfigData.SPLASH_TEXT` should only be accessed in client scripts as an error will occur when accessing it on a server.
+
+A `ConfigData` object has a field `config` of type `Config` (the FrozenLib config class), a function `get()` with type of the specific config (ex: `MainConfig`), and a function `modify((T) -> Unit)` (where `T` is a config class) of type `Unit`.
+
+`get()` will give access to the values of the config, however any changes made to them will not be saved. Each config instance is generated upon each call to support non-saved config modifications.  
+`modify((T) -> Unit)` will register a config modification to the specified config. The modification function will be run each time the config is accessed within scripts or Configurable Everything.
+
+Here is an example usage of the config API:
+```kotlin
+ConfigData.MAIN.modify { config ->
+   config.biome_placement = true
+}
+```
 
 ***
 
 # File annotations
 
 This section is incomplete.
+
+## Maven Dependencies
+This section is experimental and may not function correctly.
+
+To add a maven dependency for usage within the script, use the [`@DependsOn`](https://github.com/JetBrains/kotlin/blob/master/libraries/scripting/dependencies/src/kotlin/script/experimental/dependencies/annotations.kt) annotation at the top of the file.  
+Here is an example
+```kotlin
+@file:DependsOn("net.example:awesome_lib:2.0")
+```
+
+To add a maven repository, use the [`@Repository`](https://github.com/JetBrains/kotlin/blob/master/libraries/scripting/dependencies/src/kotlin/script/experimental/dependencies/annotations.kt) annotation at the top of the file.  
+Here is an example
+```kotlin
+@file:Repository("https://maven.fabricmc.net/")
+```
+
+## Importing from other scripts
+This section is experimental and may not function correctly.  
+Note: This currently does not work whilst remapping is enabled due to the way remapped scripts are handled.
+
+To import values from another script, use the [`@Import`](https://github.com/FrozenBlock/Configurable-Everything/blob/master/src/main/java/net/frozenblock/configurableeverything/scripting/util/Annotations.kt) annotation at the top of the file with the files to import.  
+Here is an example
+```kotlin
+@file:Import("script1.cevt.kts", "script2.cevt.kts", "script3.cevt.kts")
+```
 
 ## Compiler Options
 
