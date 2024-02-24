@@ -83,8 +83,6 @@ ConfigData.MAIN.modify { config ->
 
 # File annotations
 
-This section is incomplete.
-
 ## Maven Dependencies
 This section is experimental and may not function correctly.
 
