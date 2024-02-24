@@ -6,3 +6,6 @@ root: .components.layouts.WikiLayout("First FrozenLib Wiki Page", net.frozenbloc
 
 1. Download Minecraft
 2. Play
+
+---
+This page is a placeholder as a wiki has not been built yet.

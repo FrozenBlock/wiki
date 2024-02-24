@@ -6,3 +6,6 @@ root: .components.layouts.WikiLayout("First Geometry Dash Wiki Page", net.frozen
 
 1. Download Minecraft
 2. Play
+
+---
+This page is a placeholder as a wiki has not been built yet.
