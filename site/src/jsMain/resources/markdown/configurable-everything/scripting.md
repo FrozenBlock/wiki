@@ -88,13 +88,13 @@ This section is incomplete.
 ## Maven Dependencies
 This section is experimental and may not function correctly.
 
-To add a maven dependency for usage within the script, use the [`@DependsOn`](https://github.com/JetBrains/kotlin/blob/master/libraries/scripting/dependencies/src/kotlin/script/experimental/dependencies/annotations.kt) annotation at the top of the file.  
+To add a maven dependency for usage within the script, use the [@DependsOn](https://github.com/JetBrains/kotlin/blob/master/libraries/scripting/dependencies/src/kotlin/script/experimental/dependencies/annotations.kt) annotation at the top of the file.  
 Here is an example
 ```kotlin
 @file:DependsOn("net.example:awesome_lib:2.0")
 ```
 
-To add a maven repository, use the [`@Repository`](https://github.com/JetBrains/kotlin/blob/master/libraries/scripting/dependencies/src/kotlin/script/experimental/dependencies/annotations.kt) annotation at the top of the file.  
+To add a maven repository, use the [@Repository](https://github.com/JetBrains/kotlin/blob/master/libraries/scripting/dependencies/src/kotlin/script/experimental/dependencies/annotations.kt) annotation at the top of the file.  
 Here is an example
 ```kotlin
 @file:Repository("https://maven.fabricmc.net/")
@@ -104,7 +104,7 @@ Here is an example
 This section is experimental and may not function correctly.  
 Note: This currently does not work whilst remapping is enabled due to the way remapped scripts are handled.
 
-To import values from another script, use the [`@Import`](https://github.com/FrozenBlock/Configurable-Everything/blob/master/src/main/java/net/frozenblock/configurableeverything/scripting/util/Annotations.kt) annotation at the top of the file with the files to import.  
+To import values from another script, use the [@Import](https://github.com/FrozenBlock/Configurable-Everything/blob/master/src/main/java/net/frozenblock/configurableeverything/scripting/util/Annotations.kt) annotation at the top of the file with the files to import.  
 Here is an example
 ```kotlin
 @file:Import("script1.cevt.kts", "script2.cevt.kts", "script3.cevt.kts")
