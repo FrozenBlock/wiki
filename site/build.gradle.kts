@@ -1,4 +1,6 @@
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -19,7 +21,7 @@ kobweb {
         }
     }
 
-    markdown {
+    /*markdown {
         process.set { markdownEntries ->
             val pages: MutableMap<String, MutableList<WikiPageEntry>> = mutableMapOf()
 
@@ -70,13 +72,16 @@ kobweb {
                 )
             })
         }
-    }
+    }*/
 }
 
 kotlin {
     // This example is frontend only. However, for a fullstack app, you can uncomment the includeServer parameter
     // and the `jvmMain` source set below.
     configAsKobwebApplication("wiki.frozenblock.net" /*, includeServer = true*/)
+
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    compilerOptions.languageVersion.set(KotlinVersion.KOTLIN_1_9)
 
     sourceSets {
         val commonMain by getting {
