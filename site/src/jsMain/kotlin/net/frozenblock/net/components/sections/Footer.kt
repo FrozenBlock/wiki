@@ -84,8 +84,10 @@ private fun SocialBar() {
                 Color.Companion.rgb(0xC0C0C0)
             ),
 
+            // TODO: Add Modrinth, X
+
             // these buttons are just for testing
-            SocialButton(
+            /*SocialButton(
                 "https://github.com/FrozenBlock",
                 "/social/github.svg",
                 Color.Companion.rgb(0xFFFFFF),
@@ -102,12 +104,13 @@ private fun SocialBar() {
                 "/social/github.svg",
                 Color.Companion.rgb(0xFFFFFF),
                 Color.Companion.rgb(0xC0C0C0)
-            )
+            )*/
         )
     }
 
     SimpleGrid(
-        numColumns(3, lg = 5),
+        numColumns(2, lg = 2),
+        //numColumns(3, lg = 5),
         Modifier
             .padding(2.cssRem)
             .gap(1.5.cssRem)
