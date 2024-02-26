@@ -40,6 +40,8 @@ Nothing can only be done with remapping. Remapping only renames the code to be m
 
 To enable remapping, enable `remapping` in the Scripting config. It will require a network connection as it must download the Intermediary and Official Mojang Mappings.
 
+***
+
 # Tutorials
 
 ## Add a Block
