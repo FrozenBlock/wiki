@@ -1,5 +1,6 @@
 ---
 root: .components.layouts.WikiLayout("Geometry Dash Wiki", net.frozenblock.net.pages.geometry())
+title: Geometry Dash Wiki
 ---
 
 {{{ net.frozenblock.net.components.widgets.WikiTitle("Geometry Dash Wiki") }}}

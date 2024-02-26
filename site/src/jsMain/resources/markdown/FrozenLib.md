@@ -1,6 +1,7 @@
 ---
 root: .components.layouts.WikiLayout("FrozenLib Wiki", net.frozenblock.net.pages.lib())
 routeOverride: frozenlib
+title: FrozenLib Wiki
 ---
 
 {{{ net.frozenblock.net.components.widgets.WikiTitle("FrozenLib Wiki") }}}
