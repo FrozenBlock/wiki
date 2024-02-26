@@ -10,6 +10,7 @@ import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
+import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.palette.color
@@ -96,20 +97,25 @@ val MarkdownStyle by ComponentStyle {
 fun MarkdownLayout(
     title: String,
     hamburgerContent: @Composable () -> Unit = {},
+    outsideContent: @Composable () -> Unit = {},
     content: @Composable () -> Unit
 ) {
     PageLayout(title, hamburgerContent = hamburgerContent) {
         Column(MarkdownStyle.toModifier().fillMaxSize(), horizontalAlignment = Alignment.Start) {
             content()
         }
+        outsideContent()
     }
 }
 
-// TODO: add "Edit this page on GitHub" link
 @Composable
 inline fun WikiLayout(title: String, pages: List<WikiPage>, crossinline content: @Composable () -> Unit) {
     MarkdownLayout(title, hamburgerContent = {
         PageList(pages)
+    }, outsideContent = {
+        Column(MarkdownStyle.toModifier().fillMaxSize(), horizontalAlignment = Alignment.Start) {
+            Link("https://github.com/FrozenBlock/wiki", "Edit this page on GitHub")
+        }
     }) {
         content()
     }
