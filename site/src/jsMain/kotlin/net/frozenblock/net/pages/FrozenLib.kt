@@ -16,7 +16,7 @@ fun lib(): List<WikiPage> {
     val pages = remember {
         listOf(
             WikiPage("FrozenLib", "/$PAGE_URL"),
-            WikiPage("first wiki page", page("first"))
+            WikiPage("Getting Started", page("getting-started"))
         )
     }
     return pages
