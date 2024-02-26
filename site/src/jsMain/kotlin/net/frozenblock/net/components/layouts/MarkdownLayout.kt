@@ -105,6 +105,7 @@ fun MarkdownLayout(
     }
 }
 
+// TODO: add "Edit this page on GitHub" link
 @Composable
 inline fun WikiLayout(title: String, pages: List<WikiPage>, crossinline content: @Composable () -> Unit) {
     MarkdownLayout(title, hamburgerContent = {
