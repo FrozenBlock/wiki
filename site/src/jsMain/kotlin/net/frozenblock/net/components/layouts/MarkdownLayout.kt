@@ -114,13 +114,19 @@ fun MarkdownLayout(
 @Composable
 inline fun WikiLayout(title: String, crossinline content: @Composable () -> Unit) {
     val ctx = rememberPageContext()
-    val mod = ctx.route.path.substringAfter('/').substringBefore('/')
-    val wikiEntries = WIKI_PAGES[mod]
+    val path = ctx.route.path
+    val mod = path.substringAfter('/').substringBefore('/')
+    val wikiEntries = WIKI_PAGES[mod] ?: return
+
+    var filePath = path.substringAfter('/')
+    if (path.substringAfter('/') == mod) {
+        filePath = wikiEntries.first().filePath.substringBefore(".md")
+    }
     MarkdownLayout(title, hamburgerContent = {
-        if (wikiEntries != null) PageList(wikiEntries)
+        PageList(wikiEntries)
     }, outsideContent = {
         Column(MarkdownStyle.toModifier().fillMaxSize(), horizontalAlignment = Alignment.Start) {
-            Link("https://github.com/FrozenBlock/wiki", "Edit this page on GitHub")
+            Link("https://github.com/FrozenBlock/wiki/tree/master/site/src/jsMain/resources/markdown/$filePath.md", "Edit this page on GitHub")
         }
     }) {
         WikiTitle(title)
