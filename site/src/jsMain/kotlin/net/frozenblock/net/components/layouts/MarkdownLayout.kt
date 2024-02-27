@@ -25,6 +25,8 @@ import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.LineStyle
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.dom.P
+import org.jetbrains.compose.web.dom.Text
 
 val MarkdownStyle by ComponentStyle {
     // The following rules apply to all descendant elements, indicated by the leading space.
@@ -125,12 +127,13 @@ inline fun WikiLayout(title: String, crossinline content: @Composable () -> Unit
     MarkdownLayout(title, hamburgerContent = {
         PageList(wikiEntries)
     }, outsideContent = {
-        Column(MarkdownStyle.toModifier().fillMaxSize(), horizontalAlignment = Alignment.Start) {
+        Column(MarkdownStyle.toModifier().fillMaxSize().padding(top = 5.cssRem, bottom = 2.5.cssRem), horizontalAlignment = Alignment.End) {
             Link("https://github.com/FrozenBlock/wiki/tree/master/site/src/jsMain/resources/markdown/$filePath.md", "Edit this page on GitHub")
         }
     }) {
         WikiTitle(title)
         HorizontalDivider()
+        P { Text(" ") } // a spacer
         content()
     }
 }

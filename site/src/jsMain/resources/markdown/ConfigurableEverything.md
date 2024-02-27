@@ -3,8 +3,6 @@ root: .components.layouts.WikiLayout("Configurable Everything Wiki")
 title: Configurable Everything
 ---
 
-&nbsp;  
-
 Welcome to the Configurable Everything wiki!  
 Press the menu button in the top right corner to select a page.
 
