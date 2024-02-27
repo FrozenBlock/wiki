@@ -121,7 +121,8 @@ inline fun WikiLayout(title: String, crossinline content: @Composable () -> Unit
     val mod = path.substringAfter('/').substringBefore('/')
     val wikiEntries = WIKI_PAGES[mod] ?: return
 
-    val fileName = path.substringAfterLast('/').kebabCaseToTitleCamelCase()
+    val rawFileName = path.substringAfterLast('/')
+    val fileName = if (rawFileName.contains('-')) rawFileName.kebabCaseToTitleCamelCase() else rawFileName
     val filePath = "${path.substringBeforeLast('/')}/$fileName"
     MarkdownLayout(title, hamburgerContent = {
         PageList(wikiEntries)
