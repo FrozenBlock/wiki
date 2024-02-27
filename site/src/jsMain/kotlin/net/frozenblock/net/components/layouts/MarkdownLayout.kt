@@ -3,6 +3,7 @@
 package net.frozenblock.net.components.layouts
 
 import androidx.compose.runtime.Composable
+import com.varabyte.kobweb.browser.util.kebabCaseToTitleCamelCase
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.Overflow
 import com.varabyte.kobweb.compose.css.OverflowWrap
@@ -120,15 +121,13 @@ inline fun WikiLayout(title: String, crossinline content: @Composable () -> Unit
     val mod = path.substringAfter('/').substringBefore('/')
     val wikiEntries = WIKI_PAGES[mod] ?: return
 
-    var filePath = path.substringAfter('/')
-    if (path.substringAfter('/') == mod) {
-        filePath = wikiEntries.first().filePath.substringBefore(".md")
-    }
+    val fileName = path.substringAfterLast('/').kebabCaseToTitleCamelCase()
+    val filePath = "${path.substringBeforeLast('/')}/$fileName"
     MarkdownLayout(title, hamburgerContent = {
         PageList(wikiEntries)
     }, outsideContent = {
         Column(MarkdownStyle.toModifier().fillMaxSize().padding(top = 5.cssRem, bottom = 2.5.cssRem), horizontalAlignment = Alignment.End) {
-            Link("https://github.com/FrozenBlock/wiki/tree/master/site/src/jsMain/resources/markdown/$filePath.md", "Edit this page on GitHub")
+            Link("https://github.com/FrozenBlock/wiki/tree/master/site/src/jsMain/resources/markdown$filePath.md", "Edit this page on GitHub")
         }
     }) {
         WikiTitle(title)

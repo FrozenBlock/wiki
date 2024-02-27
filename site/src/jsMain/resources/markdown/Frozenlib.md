@@ -1,6 +1,5 @@
 ---
 root: .components.layouts.WikiLayout("FrozenLib Wiki")
-routeOverride: frozenlib
 title: FrozenLib
 ---
 
