@@ -37,12 +37,8 @@ kobweb {
                 val mod = route.substringAfter('/').substringBefore('/')
 
                 val list = pages.getOrPut(mod) { mutableListOf() }
-                if (route.count { it == '/' } == 1) {
-                    // set the topmost page to the main mod page
-                    list.addFirst(WikiPageEntry(path, route, title))
-                } else {
-                    list.add(WikiPageEntry(path, route, title))
-                }
+                list.add(WikiPageEntry(path, route, title))
+                list.sortBy { it.route }
             }
 
             val genPackage = "net.frozenblock.net.gen"
