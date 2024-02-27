@@ -38,6 +38,9 @@ kobweb {
 
                 val list = pages.getOrPut(mod) { mutableListOf() }
                 list.add(WikiPageEntry(path, route, title))
+            }
+
+            for ((_, list) in pages) {
                 list.sortBy { it.route }
             }
 
