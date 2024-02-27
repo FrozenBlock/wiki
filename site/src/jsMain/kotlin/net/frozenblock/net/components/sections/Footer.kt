@@ -72,17 +72,22 @@ private fun SocialBar() {
     val socials = remember {
         listOf(
             SocialButton(
+                "https://github.com/FrozenBlock",
+                "/social/github.svg",
+                Color.Companion.rgb(0xFFFFFF),
+                Color.Companion.rgb(0xC0C0C0)
+            ),
+            SocialButton(
                 "https://discord.com/invite/frozenblock-modding-oasis-780746010614956112",
                 "/social/discord.svg",
                 Color.Companion.rgb(0x5865F2),
                 Color.Companion.rgb(0x7883f4)
             ),
             SocialButton(
-                "https://github.com/FrozenBlock",
-                "/social/github.svg",
-                Color.Companion.rgb(0xFFFFFF),
-                Color.Companion.rgb(0xC0C0C0)
-            ),
+                "https://twitter.com/FB_Oasis",
+                "/social/x.svg",
+                Color.Companion.rgb(0x000000)
+            )
 
             // TODO: Add Modrinth, X
 
@@ -109,7 +114,7 @@ private fun SocialBar() {
     }
 
     SimpleGrid(
-        numColumns(2, lg = 2),
+        numColumns(3, lg = 3),
         //numColumns(3, lg = 5),
         Modifier
             .padding(2.cssRem)
