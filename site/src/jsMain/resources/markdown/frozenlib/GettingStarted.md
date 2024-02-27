@@ -6,7 +6,7 @@ title: Getting Started
 # Add FrozenLib as a dependency
 
 FrozenLib can be added as a dependency by using the Modrinth maven repository.  
-The Modrinth maven can be accessed via the following code for a Gradle buildscript
+The Modrinth maven can be accessed via the following code for a Gradle (Kotlin) buildscript
 ```kotlin
 maven("https://api.modrinth.com/maven") {
     name = "Modrinth"
