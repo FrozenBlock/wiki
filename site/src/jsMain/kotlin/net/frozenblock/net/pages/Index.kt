@@ -42,7 +42,7 @@ val TopHeroContainerVariant by HeroContainerStyle.addVariant {
 @Composable
 fun HomePage() {
     PageLayout("Start") {
-        Row(HeroContainerStyle.toModifier()) {
+        Row(HeroContainerStyle.toModifier().padding(bottom = 1.cssRem)) {
             Box {
                 val sitePalette = ColorMode.current.toSitePalette()
 

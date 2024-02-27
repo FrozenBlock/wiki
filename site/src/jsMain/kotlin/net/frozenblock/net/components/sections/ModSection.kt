@@ -83,7 +83,7 @@ fun ModSection() {
         )
     }
 
-    SimpleGrid(numColumns(1, md = 3)) {
+    SimpleGrid(numColumns(1, md = 3), modifier = Modifier.padding(bottom = 2.cssRem)) {
         mods.forEach { mod -> ModItem(mod) }
     }
 }
