@@ -88,28 +88,6 @@ private fun SocialBar() {
                 "/social/x.svg",
                 Color.Companion.rgb(0x000000)
             )
-
-            // TODO: Add Modrinth, X
-
-            // these buttons are just for testing
-            /*SocialButton(
-                "https://github.com/FrozenBlock",
-                "/social/github.svg",
-                Color.Companion.rgb(0xFFFFFF),
-                Color.Companion.rgb(0xC0C0C0)
-            ),
-            SocialButton(
-                "https://github.com/FrozenBlock",
-                "/social/github.svg",
-                Color.Companion.rgb(0xFFFFFF),
-                Color.Companion.rgb(0xC0C0C0)
-            ),
-            SocialButton(
-                "https://github.com/FrozenBlock",
-                "/social/github.svg",
-                Color.Companion.rgb(0xFFFFFF),
-                Color.Companion.rgb(0xC0C0C0)
-            )*/
         )
     }
 
