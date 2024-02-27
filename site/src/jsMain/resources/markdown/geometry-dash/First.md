@@ -1,5 +1,6 @@
 ---
-root: .components.layouts.WikiLayout("First Geometry Dash Wiki Page", net.frozenblock.net.pages.geometry())
+root: .components.layouts.WikiLayout("First Geometry Dash Wiki Page")
+title: first wiki page
 ---
 
 # How to play Minecraft

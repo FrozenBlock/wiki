@@ -10,13 +10,16 @@ import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
+import com.varabyte.kobweb.core.rememberPageContext
+import com.varabyte.kobweb.silk.components.layout.HorizontalDivider
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.palette.color
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import net.frozenblock.net.components.sections.PageList
-import net.frozenblock.net.components.sections.WikiPage
+import net.frozenblock.net.components.widgets.WikiTitle
+import net.frozenblock.net.gen.WIKI_PAGES
 import net.frozenblock.net.toSitePalette
 import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.LineStyle
@@ -109,14 +112,19 @@ fun MarkdownLayout(
 }
 
 @Composable
-inline fun WikiLayout(title: String, pages: List<WikiPage>, crossinline content: @Composable () -> Unit) {
+inline fun WikiLayout(title: String, crossinline content: @Composable () -> Unit) {
+    val ctx = rememberPageContext()
+    val mod = ctx.route.path.substringAfter('/').substringBefore('/')
+    val wikiEntries = WIKI_PAGES[mod]
     MarkdownLayout(title, hamburgerContent = {
-        PageList(pages)
+        if (wikiEntries != null) PageList(wikiEntries)
     }, outsideContent = {
         Column(MarkdownStyle.toModifier().fillMaxSize(), horizontalAlignment = Alignment.Start) {
             Link("https://github.com/FrozenBlock/wiki", "Edit this page on GitHub")
         }
     }) {
+        WikiTitle(title)
+        HorizontalDivider()
         content()
     }
 }

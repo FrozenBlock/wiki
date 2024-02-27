@@ -1,9 +1,6 @@
 ---
-root: .components.layouts.WikiLayout("DataFixer Config", net.frozenblock.net.pages.config_every())
----
-
-{{{ net.frozenblock.net.components.widgets.WikiTitle("DataFixer Config") }}}
-
+root: .components.layouts.WikiLayout("DataFixer Config")
+title: DataFixer Config
 ---
 
 ## About

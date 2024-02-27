@@ -1,9 +1,6 @@
 ---
-root: .components.layouts.WikiLayout("Scripting", net.frozenblock.net.pages.config_every())
----
-
-{{{ net.frozenblock.net.components.widgets.WikiTitle("Scripting") }}}
-
+root: .components.layouts.WikiLayout("Scripting")
+title: Scripting
 ---
 
 # About

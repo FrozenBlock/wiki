@@ -10,7 +10,7 @@ plugins {
 group = "net.frozenblock.net"
 version = "1.0-SNAPSHOT"
 
-class WikiPageEntry(val fileName: String, val route: String, val title: String)
+class WikiPageEntry(val filePath: String, val route: String, val title: String)
 
 kobweb {
     app {
@@ -19,58 +19,73 @@ kobweb {
         }
     }
 
-    /*markdown {
+    markdown {
         process.set { markdownEntries ->
             val pages: MutableMap<String, MutableList<WikiPageEntry>> = mutableMapOf()
 
             val requiredFields = listOf("title")
             for (entry in markdownEntries) {
                 val fm = entry.frontMatter
-                val title = requiredFields
+                val (title) = requiredFields
                     .map { key -> fm[key]?.singleOrNull() }
                     .takeIf { values -> values.all { it != null } }
                     ?.requireNoNulls()
                     ?: continue
 
                 val path = entry.filePath
-                val mod = path.substringBefore('/')
-                val fileName = path.substringAfter('/')
+                val route = entry.route
+                val mod = route.substringAfter('/').substringBefore('/')
 
-                pages.getOrPut(mod) { mutableListOf() }.add(WikiPageEntry(fileName, entry.route, title))
+                val list = pages.getOrPut(mod) { mutableListOf() }
+                if (route.count { it == '/' } == 1) {
+                    // set the topmost page to the main mod page
+                    list.addFirst(WikiPageEntry(path, route, title))
+                } else {
+                    list.add(WikiPageEntry(path, route, title))
+                }
             }
 
-            val package = "net.frozenblock.net.gen"
-            val path = "${package.replace('.', '/')}/WikiEntries.kt"
+            val genPackage = "net.frozenblock.net.gen"
+            val path = "${genPackage.replace('.', '/')}/WikiEntries.kt"
             generateKotlin(path, buildString {
                 appendLine(
                     """
                     // This file is generated. Modify the build script if you need to change it.
 
-                    package $package
+                    package $genPackage
 
-                    import androidx.compose.runtime.*
+                    class WikiPageEntry(val filePath: String, val route: String, val title: String)
 
-                    class WikiPageEntry(val fileName: String, val route: String, val title: String)
-
-                    val WIKI_PAGES: Map<String, List<WikiPageEntry>> = remember {
-                        mapOf(
+                    val WIKI_PAGES: Map<String, List<WikiPageEntry>> = mapOf(
                     """.trimIndent()
                 )
 
-                // TODO: add the list of pages
                 for ((mod, entries) in pages) {
-                    appendLine("$mod to listOf(),")
+                    val entriesStr = StringBuilder()
+                    entries.forEach { entry ->
+                        entriesStr.appendLine(
+                            """
+                                WikiPageEntry("${entry.filePath}", "${entry.route}", "${entry.title}"),
+                            """.trimIndent()
+                        )
+                    }
+                    appendLine(
+                        """
+                            "$mod" to listOf(
+                                $entriesStr
+                            ),
+                        """.trimIndent()
+                    )
                 }
 
                 appendLine(
                     """
-                        )
-                    }
+                    )
                     """.trimIndent()
                 )
             })
         }
-    }*/
+    }
 }
 
 kotlin {

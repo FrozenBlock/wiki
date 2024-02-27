@@ -9,13 +9,12 @@ import com.varabyte.kobweb.compose.ui.modifiers.whiteSpace
 import com.varabyte.kobweb.silk.components.layout.HorizontalDivider
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.navigation.UncoloredLinkVariant
-
-class WikiPage(val title: String, val link: String)
+import net.frozenblock.net.gen.WikiPageEntry
 
 @Composable
-private fun PageItem(page: WikiPage) {
+private fun PageItem(page: WikiPageEntry) {
     Link(
-        page.link,
+        page.route,
         page.title,
         modifier = Modifier.whiteSpace(WhiteSpace.NoWrap),
         variant = UncoloredLinkVariant
@@ -23,7 +22,7 @@ private fun PageItem(page: WikiPage) {
 }
 
 @Composable
-fun PageList(pages: List<WikiPage>) {
+fun PageList(pages: List<WikiPageEntry>) {
     HorizontalDivider()
     pages.forEach { page -> PageItem(page) }
 }

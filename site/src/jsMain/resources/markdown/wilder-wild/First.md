@@ -1,5 +1,6 @@
 ---
-root: .components.layouts.WikiLayout("First Wiki Page", net.frozenblock.net.pages.wilderwild())
+root: .components.layouts.WikiLayout("First Wiki Page")
+title: first wiki page
 ---
 
 # How to play Minecraft

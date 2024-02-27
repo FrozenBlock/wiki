@@ -1,5 +1,6 @@
 ---
-root: .components.layouts.WikiLayout("Getting Started", net.frozenblock.net.pages.lib())
+root: .components.layouts.WikiLayout("Getting Started")
+title: Getting Started
 ---
 
 # Add FrozenLib as a dependency
