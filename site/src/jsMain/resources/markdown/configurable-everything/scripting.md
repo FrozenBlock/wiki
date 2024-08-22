@@ -69,14 +69,40 @@ However, the Mixins config does not have a `ConfigData` object as it cannot be m
 A `ConfigData` object has a field `config` of type `Config` (the FrozenLib config class), a function `get()` with type of the specific config (ex: `MainConfig`), and a function `modify((T) -> Unit)` (where `T` is a config class) of type `Unit`.
 
 `get()` will give access to the values of the config, however any changes made to them will not be saved. Each config instance is generated upon each call to support non-saved config modifications.  
-`modify((T) -> Unit)` will register a config modification to the specified config. The modification function will be run each time the config is accessed within scripts or Configurable Everything.
+`modify((ConfigWrapper<T>) -> Unit)` will register a config modification to the specified config. The modification function will be run each time the config is accessed within scripts or Configurable Everything.
+Config wrappers are internally used to simplify the process of interacting with config entries. Think of config wrappers as just the configs themselves.
 
-Here is an example usage of the config API:
+Here are some example usages of the config API:
 ```kotlin
 ConfigData.MAIN.modify { config ->
-   config.biome_placement = true
+    config.biome_placement = true
 }
 ```
+
+This example depends on Remapping. Please see the related section.
+```kotlin
+// Imports are required, as Kotlin is used as a JVM language.
+import com.mojang.datafixers.util.Either
+import net.frozenblock.configurableeverything.biome_placement.util.DimensionBiomeKeyList
+import net.minecraft.tags.BiomeTags // requires Remapping, see related section
+import net.minecraft.world.level.biome.Biomes // requires Remapping, see related section
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes // requires Remapping, see related section
+
+
+ConfigData.BIOME_PLACEMENT.modify { config ->
+    config.removedBiomes.add(
+        DimensionBiomeKeyList(
+            BuiltinDimensionTypes.OVERWORLD,
+            mutableListOf(
+                Either.left(Biomes.PLAINS), // removes plains biome
+                Either.right(BiomeTags.IS_OVERWORLD) // removes all overworld biomes
+            )
+        )
+    )
+}
+```
+
+Other configs in `ConfigData` aren't shown, but they can be found [here](https://github.com/FrozenBlock/Configurable-Everything/blob/master/src/main/java/net/frozenblock/configurableeverything/scripting/util/ConfigData.kt) in the source code.
 
 ***
 
