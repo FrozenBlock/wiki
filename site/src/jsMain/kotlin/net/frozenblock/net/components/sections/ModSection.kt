@@ -19,10 +19,10 @@ import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.navigation.UncoloredLinkVariant
-import com.varabyte.kobweb.silk.components.style.ComponentStyle
-import com.varabyte.kobweb.silk.components.style.base
-import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.components.text.SpanText
+import com.varabyte.kobweb.silk.style.CssStyle
+import com.varabyte.kobweb.silk.style.base
+import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import net.frozenblock.net.components.style.background
 import net.frozenblock.net.components.style.boxShadow
@@ -34,7 +34,7 @@ import org.jetbrains.compose.web.css.px
 
 private class Mod(val link: String, val name: String, val icon: String)
 
-val ModItemStyle by ComponentStyle.base {
+val ModItemStyle = CssStyle.base {
     Modifier.margin(18.px)
 }
 

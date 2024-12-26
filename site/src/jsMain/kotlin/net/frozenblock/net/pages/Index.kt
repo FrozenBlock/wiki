@@ -10,12 +10,9 @@ import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.core.Page
-import com.varabyte.kobweb.silk.components.style.ComponentStyle
-import com.varabyte.kobweb.silk.components.style.addVariant
-import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
-import com.varabyte.kobweb.silk.components.style.toAttrs
-import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.components.text.SpanText
+import com.varabyte.kobweb.silk.style.*
+import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import net.frozenblock.net.HeadlineTextStyle
 import net.frozenblock.net.SubheadlineTextStyle
@@ -28,13 +25,15 @@ import org.jetbrains.compose.web.css.vh
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Text
 
+sealed interface HeroContainerKind : ComponentKind
+
 // Container that has a tagline and grid on desktop, and just the tagline on mobile
-val HeroContainerStyle by ComponentStyle {
+val HeroContainerStyle = CssStyle<HeroContainerKind> {
     base { Modifier.fillMaxWidth().gap(2.cssRem) }
     Breakpoint.MD { Modifier.margin { top(20.vh) } }
 }
 
-val TopHeroContainerVariant by HeroContainerStyle.addVariant {
+val TopHeroContainerVariant = HeroContainerStyle.addVariant {
     Breakpoint.MD { Modifier.margin { top(5.vh) } }
 }
 

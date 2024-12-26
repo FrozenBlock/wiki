@@ -14,8 +14,8 @@ import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.components.layout.HorizontalDivider
 import com.varabyte.kobweb.silk.components.navigation.Link
-import com.varabyte.kobweb.silk.components.style.ComponentStyle
-import com.varabyte.kobweb.silk.components.style.toModifier
+import com.varabyte.kobweb.silk.style.CssStyle
+import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.palette.color
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import net.frozenblock.net.components.sections.PageList
@@ -29,7 +29,7 @@ import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
 
-val MarkdownStyle by ComponentStyle {
+val MarkdownStyle = CssStyle {
     // The following rules apply to all descendant elements, indicated by the leading space.
     // When you use `cssRule`, the name of this style is prefixed in front of it.
     // See also: https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_combinator

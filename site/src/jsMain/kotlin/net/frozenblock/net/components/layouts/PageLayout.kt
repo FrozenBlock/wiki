@@ -12,9 +12,9 @@ import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
-import com.varabyte.kobweb.silk.components.style.ComponentStyle
-import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
-import com.varabyte.kobweb.silk.components.style.toModifier
+import com.varabyte.kobweb.silk.style.CssStyle
+import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
+import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import kotlinx.browser.document
 import org.jetbrains.compose.web.css.cssRem
@@ -24,7 +24,7 @@ import net.frozenblock.net.components.sections.Footer
 import net.frozenblock.net.components.sections.NavHeader
 import net.frozenblock.net.toSitePalette
 
-val PageContentStyle by ComponentStyle {
+val PageContentStyle = CssStyle {
     base { Modifier.fillMaxSize().padding(leftRight = 2.cssRem, /*top = 4.0.cssRem*/) }
     Breakpoint.MD { Modifier.maxWidth(60.cssRem) }
 }

@@ -1,8 +1,9 @@
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.jetbrains.compose)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kobweb.application)
     alias(libs.plugins.kobwebx.markdown)
 }
@@ -92,16 +93,21 @@ kotlin {
     // and the `jvmMain` source set below.
     configAsKobwebApplication("wiki.frozenblock.net" /*, includeServer = true*/)
 
+    js {
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions.target = "es2015"
+    }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(compose.runtime)
+                implementation(libs.compose.runtime)
             }
         }
 
         val jsMain by getting {
             dependencies {
-                implementation(compose.html.core)
+                implementation(libs.compose.html.core)
                 implementation(libs.kobweb.core)
                 implementation(libs.kobweb.silk)
                 // This default template uses built-in SVG icons, but what's available is limited.
