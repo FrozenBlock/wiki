@@ -28,6 +28,8 @@ After booting the game, there should be a new `scripts` folder in the Configurab
 ***
 
 # Remapping
+**Remapping is OBSOLETE starting with Minecraft 26.1**
+
 Remapping converts the obfuscated Minecraft jar into its deobfuscated form.
 
 Configurable Everything uses this to enable great control over the game with scripts. It allows for simply adding blocks, items, entities, and accessing any part of any mod.
@@ -43,11 +45,24 @@ To enable remapping, enable `remapping` in the Scripting config. It will require
 
 ## Add a Block
 
-A block can be added by adding the following code to a script
+A block can be added by adding the following code to a script\
+1.21.1
 ```kotlin
 Registry.register(BuiltInRegistries.BLOCK, ResourceLocation(“example:block”), Block(Properties.of()))
 ```
-This will create a block with the default block properties. To change the block id, change `example:block` in the `ResourceLocation` to a different value. The new value will be what the block is called.
+1.21.11
+```kotlin
+Registry.register(BuiltInRegistries.BLOCK, Identifier.parse("example:block"), Block(Properties.of().setId(ResourceKey.create(Registries.BLOCK, Identifier.parse("example:block")))))
+```
+26.1+
+```kotlin
+// The setId stuff in 1.21.11 is automatically applied with this
+registerBlock("example:block", Properties.of()) { properties ->
+    Block(properties)
+}
+```
+This will create a block with the default block properties. To change the block id, change `example:block` in
+the `ResourceLocation`/`Identifier` to a different value. The new value will be what the block is called.
 
 To use the properties of another block, replace `Properties.of()` with `Properties.ofFullCopy(Blocks.DEEPSLATE)`. Please note that `Blocks.DEEPSLATE` is a placeholder. Any block can be used.
 
