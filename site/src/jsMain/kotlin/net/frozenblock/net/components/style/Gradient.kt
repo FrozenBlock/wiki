@@ -16,9 +16,9 @@ fun Modifier.background(colorMode: ColorMode) =
     this.then(when (colorMode) {
         ColorMode.DARK -> Modifier.backgroundImage(
             radialGradient(
-                RadialGradient.Shape.Circle,
                 Color.rgb(41, 41, 46),
                 Color.rgb(25, 25, 28),
+                RadialGradient.Shape.Circle,
                 CSSPosition.Top
             )
         )

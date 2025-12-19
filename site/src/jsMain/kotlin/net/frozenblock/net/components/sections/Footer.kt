@@ -28,7 +28,6 @@ import com.varabyte.kobweb.silk.style.base
 import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.style.vars.color.ColorVar
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
-import com.varabyte.kobweb.silk.theme.colors.ColorSchemes
 import net.frozenblock.net.CircleButtonVariant
 import net.frozenblock.net.toSitePalette
 import org.jetbrains.compose.web.css.CSSColorValue
@@ -78,7 +77,7 @@ private fun SocialBar() {
                 Color.Companion.rgb(0xC0C0C0)
             ),
             SocialButton(
-                "https://discord.com/invite/frozenblock-modding-oasis-780746010614956112",
+                "https://discord.com/invite/frozenblock",
                 "/social/discord.svg",
                 Color.Companion.rgb(0x5865F2),
                 Color.Companion.rgb(0x7883f4)
