@@ -3,7 +3,6 @@
 package net.frozenblock.net.components.sections
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
@@ -11,13 +10,12 @@ import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.graphics.Color
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
-import com.varabyte.kobweb.silk.components.forms.Button
-import com.varabyte.kobweb.silk.components.forms.ButtonSize
-import com.varabyte.kobweb.silk.components.forms.ButtonVars
-import com.varabyte.kobweb.silk.components.graphics.Image
+import com.varabyte.kobweb.silk.components.icons.fa.FaDiscord
+import com.varabyte.kobweb.silk.components.icons.fa.FaGithub
+import com.varabyte.kobweb.silk.components.icons.fa.FaXTwitter
+import com.varabyte.kobweb.silk.components.icons.fa.IconSize
 import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.navigation.Link
@@ -25,14 +23,17 @@ import com.varabyte.kobweb.silk.components.navigation.UncoloredLinkVariant
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.style.CssStyle
 import com.varabyte.kobweb.silk.style.base
+import com.varabyte.kobweb.silk.style.selectors.hover
 import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.style.vars.color.ColorVar
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
-import net.frozenblock.net.CircleButtonVariant
+import com.varabyte.kobweb.silk.theme.colors.palette.color
+import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
+import com.varabyte.kobweb.silk.theme.colors.shifted
 import net.frozenblock.net.toSitePalette
-import org.jetbrains.compose.web.css.CSSColorValue
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.percent
+import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.Span
 
 val FooterStyle = CssStyle.base {
@@ -41,63 +42,35 @@ val FooterStyle = CssStyle.base {
         .padding(topBottom = 1.5.cssRem, leftRight = 10.percent)
 }
 
-private class SocialButton(
-    val link: String,
-    val icon: String,
-    val buttonColor: CSSColorValue? = null,
-    val hoverButtonColor: CSSColorValue? = null,
-    val pressButtonColor: CSSColorValue? = null
-)
-
-@Composable
-private fun SocialButtonItem(social: SocialButton) {
-    Link(social.link) {
-        Button(
-            onClick = {},
-            modifier = Modifier
-                .setVariable(ButtonVars.BackgroundDefaultColor, social.buttonColor)
-                .setVariable(ButtonVars.BackgroundHoverColor, social.hoverButtonColor)
-                .setVariable(ButtonVars.BackgroundPressedColor, social.pressButtonColor),
-            variant = CircleButtonVariant,
-            size = ButtonSize.LG
-        ) {
-            Image(social.icon, height = 32)
-        }
+val HoverBrightenStyle = CssStyle {
+    val color = colorMode.toPalette().color
+    base {
+        Modifier.color(color.shifted(colorMode.opposite, 0.2f))
+    }
+    hover {
+        Modifier.color(color)
     }
 }
 
 @Composable
 private fun SocialBar() {
-    val socials = remember {
-        listOf(
-            SocialButton(
-                "https://github.com/FrozenBlock",
-                "/social/github.svg",
-                Color.Companion.rgb(0xFFFFFF),
-                Color.Companion.rgb(0xC0C0C0)
-            ),
-            SocialButton(
-                "https://discord.com/invite/frozenblock",
-                "/social/discord.svg",
-                Color.Companion.rgb(0x5865F2),
-                Color.Companion.rgb(0x7883f4)
-            ),
-            SocialButton(
-                "https://twitter.com/FB_Oasis",
-                "/social/x.svg",
-                Color.Companion.rgb(0x000000)
-            )
-        )
-    }
-
     SimpleGrid(
         numColumns(3, lg = 3),
         //numColumns(3, lg = 5),
         Modifier
+            .margin(0.px, 12.px)
             .padding(2.cssRem)
             .gap(1.5.cssRem)
     ) {
-        socials.forEach { social -> SocialButtonItem(social) }
+        Link("https://github.com/FrozenBlock", HoverBrightenStyle.toModifier()) {
+            FaGithub(size = IconSize.X2)
+        }
+        Link("https://discord.com/invite/frozenblock", HoverBrightenStyle.toModifier()) {
+            FaDiscord(size = IconSize.X2)
+        }
+        Link("https://x.com/FB_Oasis", HoverBrightenStyle.toModifier()) {
+            FaXTwitter(size = IconSize.X2)
+        }
     }
 }
 
