@@ -9,6 +9,7 @@ import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
+import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
@@ -60,13 +61,11 @@ val HoverBrightenStyle = CssStyle {
 
 @Composable
 private fun SocialBar() {
-    SimpleGrid(
-        numColumns(3, lg = 6),
-        //numColumns(3, lg = 5),
+    Row(
         Modifier
             .margin(0.px, 12.px)
-            .padding(2.cssRem)
-            .gap(1.5.cssRem)
+            .gap(1.5.cssRem),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Link("https://discord.com/invite/frozenblock", HoverBrightenStyle.toModifier()) {
             FaDiscord(size = IconSize.X2)
@@ -89,9 +88,9 @@ private fun SocialBar() {
         }
         Tooltip(ElementTarget.PreviousSibling, "Watch our YouTube videos", Modifier.navHeaderZIndex())
         Link("https://modrinth.com/organization/frozenblock", HoverBrightenStyle.toModifier()) {
-            Image("/social/modrinth.svg", "Modrinth", HoverBrightenStyle.toModifier())
+            Image("/social/modrinth.svg", "Modrinth")
         }
-        Tooltip(ElementTarget.PreviousSibling, "Watch our YouTube videos", Modifier.navHeaderZIndex())
+        Tooltip(ElementTarget.PreviousSibling, "Download our mods", Modifier.navHeaderZIndex())
     }
 }
 
