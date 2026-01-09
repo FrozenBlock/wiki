@@ -3,8 +3,10 @@ package net.frozenblock.net
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import com.varabyte.kobweb.compose.css.ScrollBehavior
+import com.varabyte.kobweb.compose.ui.graphics.Color
 import com.varabyte.kobweb.compose.ui.modifiers.minHeight
 import com.varabyte.kobweb.compose.ui.modifiers.scrollBehavior
+import com.varabyte.kobweb.compose.ui.modifiers.setVariable
 import com.varabyte.kobweb.core.App
 import com.varabyte.kobweb.silk.SilkApp
 import com.varabyte.kobweb.silk.components.layout.Surface
@@ -14,6 +16,7 @@ import com.varabyte.kobweb.silk.style.common.SmoothColorStyle
 import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import kotlinx.browser.localStorage
+import net.frozenblock.net.components.style.DividerColor
 import org.jetbrains.compose.web.css.vh
 
 private const val COLOR_MODE_KEY = "wiki.frozenblock.net:colorMode"
@@ -36,6 +39,13 @@ fun AppEntry(content: @Composable () -> Unit) {
             SmoothColorStyle.toModifier()
                 .minHeight(100.vh)
                 .scrollBehavior(ScrollBehavior.Smooth)
+                .setVariable(
+                    DividerColor,
+                    when (colorMode) {
+                        ColorMode.DARK -> Color.rgba(238, 238, 238, 0.2f)
+                        ColorMode.LIGHT -> Color.rgba(17, 17, 17, 0.2f)
+                    }
+                )
         ) {
             content()
         }
