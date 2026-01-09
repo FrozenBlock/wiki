@@ -41,28 +41,26 @@ To enable remapping, enable `remapping` in the Scripting config. It will require
 
 ***
 
+# Very useful resources
+
+https://mappings.dev - Can be used to explore mappings for those without an IDE. **Mappings marked as Mojang are used in remapped scripts**
+
 # Tutorials
 
 ## Add a Block
 
 A block can be added by adding the following code to a script\
-1.21.1
+
 ```kotlin
-Registry.register(BuiltInRegistries.BLOCK, ResourceLocation(“example:block”), Block(Properties.of()))
-```
-1.21.11
-```kotlin
-Registry.register(BuiltInRegistries.BLOCK, Identifier.parse("example:block"), Block(Properties.of().setId(ResourceKey.create(Registries.BLOCK, Identifier.parse("example:block")))))
-```
-26.1+
-```kotlin
-// The setId stuff in 1.21.11 is automatically applied with this
-registerBlock("example:block", Properties.of()) { properties ->
+registerBlock("example:block", { properties ->
     Block(properties)
-}
+}, Properties.of())
 ```
 This will create a block with the default block properties. To change the block id, change `example:block` in
 the `ResourceLocation`/`Identifier` to a different value. The new value will be what the block is called.
+
+Check the mappings for [blocks](https://mappings.dev/1.21.11/net/minecraft/world/level/block/) to see what types of blocks you can utilize\
+Check the mappings for [Properties](https://mappings.dev/1.21.11/net/minecraft/world/level/block/state/BlockBehaviour$Properties.html) to see available functions
 
 To use the properties of another block, replace `Properties.of()` with `Properties.ofFullCopy(Blocks.DEEPSLATE)`. Please note that `Blocks.DEEPSLATE` is a placeholder. Any block can be used.
 
@@ -72,6 +70,9 @@ An item can be added by adding the following code to a script
 ```kotlin
 Registry.register(BuiltInRegistries.ITEM, ResourceLocation("example:item"), Item(Item.Properties()))`
 ```
+
+Check the mappings for [items](https://mappings.dev/1.21.11/net/minecraft/world/item/index.html) to see available item types\
+Check the mappings for [Item.Properties](https://mappings.dev/1.21.11/net/minecraft/world/item/Item$Properties.html) to see what properties can be applied
 
 ## Config access and mutating
 
