@@ -38,6 +38,8 @@ import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 
+fun Modifier.navHeaderZIndex() = this.zIndex(10)
+
 val NavHeaderBackgroundStyle = SmoothColorStyle.extendedByBase {
     Modifier
         .backgroundColor(getNavBackgroundColor(colorMode))
@@ -58,7 +60,7 @@ val NavHeaderStyle = NavHeaderBackgroundStyle.extendedByBase {
         .padding(1.cssRem)
         .position(Position.Sticky)
         .top(0.cssRem)
-        .zIndex(1000)
+        .navHeaderZIndex()
 }
 
 @Composable

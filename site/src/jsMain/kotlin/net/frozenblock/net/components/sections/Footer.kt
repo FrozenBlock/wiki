@@ -3,6 +3,7 @@
 package net.frozenblock.net.components.sections
 
 import androidx.compose.runtime.Composable
+import com.varabyte.kobweb.browser.dom.ElementTarget
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
@@ -12,14 +13,18 @@ import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
+import com.varabyte.kobweb.silk.components.graphics.Image
+import com.varabyte.kobweb.silk.components.icons.fa.FaBluesky
 import com.varabyte.kobweb.silk.components.icons.fa.FaDiscord
 import com.varabyte.kobweb.silk.components.icons.fa.FaGithub
 import com.varabyte.kobweb.silk.components.icons.fa.FaXTwitter
+import com.varabyte.kobweb.silk.components.icons.fa.FaYoutube
 import com.varabyte.kobweb.silk.components.icons.fa.IconSize
 import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.navigation.UncoloredLinkVariant
+import com.varabyte.kobweb.silk.components.overlay.Tooltip
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.style.CssStyle
 import com.varabyte.kobweb.silk.style.base
@@ -34,6 +39,7 @@ import net.frozenblock.net.toSitePalette
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.dom.Img
 import org.jetbrains.compose.web.dom.Span
 
 val FooterStyle = CssStyle.base {
@@ -55,22 +61,37 @@ val HoverBrightenStyle = CssStyle {
 @Composable
 private fun SocialBar() {
     SimpleGrid(
-        numColumns(3, lg = 3),
+        numColumns(3, lg = 6),
         //numColumns(3, lg = 5),
         Modifier
             .margin(0.px, 12.px)
             .padding(2.cssRem)
             .gap(1.5.cssRem)
     ) {
-        Link("https://github.com/FrozenBlock", HoverBrightenStyle.toModifier()) {
-            FaGithub(size = IconSize.X2)
-        }
         Link("https://discord.com/invite/frozenblock", HoverBrightenStyle.toModifier()) {
             FaDiscord(size = IconSize.X2)
         }
+        Tooltip(ElementTarget.PreviousSibling, "Chat with us on Discord", Modifier.navHeaderZIndex())
+        Link("https://github.com/FrozenBlock", HoverBrightenStyle.toModifier()) {
+            FaGithub(size = IconSize.X2)
+        }
+        Tooltip(ElementTarget.PreviousSibling, "Source code of projects on GitHub", Modifier.navHeaderZIndex())
         Link("https://x.com/FB_Oasis", HoverBrightenStyle.toModifier()) {
             FaXTwitter(size = IconSize.X2)
         }
+        Tooltip(ElementTarget.PreviousSibling, "Follow us on X", Modifier.navHeaderZIndex())
+        Link("https://bsky.app/profile/frozenblock.bsky.social", HoverBrightenStyle.toModifier()) {
+            FaBluesky(size = IconSize.X2)
+        }
+        Tooltip(ElementTarget.PreviousSibling, "Follow us on Bluesky", Modifier.navHeaderZIndex())
+        Link("https://www.youtube.com/@frozenblockmoddingoasis", HoverBrightenStyle.toModifier()) {
+            FaYoutube(size = IconSize.X2)
+        }
+        Tooltip(ElementTarget.PreviousSibling, "Watch our YouTube videos", Modifier.navHeaderZIndex())
+        Link("https://modrinth.com/organization/frozenblock", HoverBrightenStyle.toModifier()) {
+            Image("/social/modrinth.svg", "Modrinth", HoverBrightenStyle.toModifier())
+        }
+        Tooltip(ElementTarget.PreviousSibling, "Watch our YouTube videos", Modifier.navHeaderZIndex())
     }
 }
 

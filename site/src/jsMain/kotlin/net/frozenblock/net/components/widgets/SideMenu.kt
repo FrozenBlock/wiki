@@ -55,6 +55,8 @@ enum class SideMenuState {
     }
 }
 
+fun Modifier.sideMenuZIndex() = this.zIndex(15)
+
 @Composable
 fun SideMenu(
     menuState: SideMenuState = SideMenuState.OPEN,
@@ -67,7 +69,7 @@ fun SideMenu(
 ) {
     Overlay(
         Modifier
-            .zIndex(1001)
+            .sideMenuZIndex()
             .setVariable(OverlayVars.BackgroundColor, Colors.Transparent)
             .onClick { close() }
     ) {
