@@ -49,7 +49,7 @@ https://mappings.dev - Can be used to explore mappings for those without an IDE.
 
 ## Add a Block
 
-A block can be added by adding the following code to a script\
+A block can be added by adding the following code to a script
 
 ```kotlin
 registerBlock("example:block", { properties ->
@@ -60,7 +60,7 @@ This will create a block with the default block properties. To change the block 
 the `ResourceLocation`/`Identifier` to a different value. The new value will be what the block is called.
 
 Check the mappings for [blocks](https://mappings.dev/1.21.11/net/minecraft/world/level/block/) to see what types of blocks you can utilize\
-Check the mappings for [Properties](https://mappings.dev/1.21.11/net/minecraft/world/level/block/state/BlockBehaviour$Properties.html) to see available functions
+Check the mappings for [BlockBehaviour$Properties](https://mappings.dev/1.21.11/net/minecraft/world/level/block/state/) to see available functions
 
 To use the properties of another block, replace `Properties.of()` with `Properties.ofFullCopy(Blocks.DEEPSLATE)`. Please note that `Blocks.DEEPSLATE` is a placeholder. Any block can be used.
 
@@ -72,7 +72,7 @@ Registry.register(BuiltInRegistries.ITEM, ResourceLocation("example:item"), Item
 ```
 
 Check the mappings for [items](https://mappings.dev/1.21.11/net/minecraft/world/item/index.html) to see available item types\
-Check the mappings for [Item.Properties](https://mappings.dev/1.21.11/net/minecraft/world/item/Item$Properties.html) to see what properties can be applied
+Check the mappings for [Item$Properties](https://mappings.dev/1.21.11/net/minecraft/world/item/) to see what properties can be applied
 
 ## Config access and mutating
 
