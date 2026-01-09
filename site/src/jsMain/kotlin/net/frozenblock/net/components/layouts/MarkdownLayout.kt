@@ -127,7 +127,9 @@ inline fun WikiLayout(title: String, crossinline content: @Composable () -> Unit
     MarkdownLayout(title, hamburgerContent = {
         PageList(wikiEntries)
     }, outsideContent = {
-        Column(MarkdownStyle.toModifier().fillMaxSize().padding(top = 5.cssRem, bottom = 2.5.cssRem), horizontalAlignment = Alignment.End) {
+        // The sidebar content is rendered via the MarkdownLayout's right column which is sticky
+        Column(MarkdownStyle.toModifier().fillMaxSize().padding(top = 0.cssRem, bottom = 2.5.cssRem), horizontalAlignment = Alignment.End) {
+            PageList(wikiEntries)
             Link("https://github.com/FrozenBlock/wiki/tree/master/site/src/jsMain/resources/markdown$filePath.md", "Edit this page on GitHub")
         }
     }) {

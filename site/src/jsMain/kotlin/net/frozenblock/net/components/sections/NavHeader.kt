@@ -27,10 +27,16 @@ import net.frozenblock.net.components.widgets.IconButton
 import net.frozenblock.net.components.widgets.SideMenu
 import net.frozenblock.net.components.widgets.SideMenuState
 import org.jetbrains.compose.web.css.DisplayStyle
+import org.jetbrains.compose.web.css.Position
 import org.jetbrains.compose.web.css.cssRem
 
 val NavHeaderStyle = CssStyle.base {
-    Modifier.fillMaxWidth().padding(1.cssRem)
+    Modifier
+        .fillMaxWidth()
+        .padding(1.cssRem)
+        .position(Position.Sticky)
+        .top(0.cssRem)
+        .zIndex(1000)
 }
 
 @Composable

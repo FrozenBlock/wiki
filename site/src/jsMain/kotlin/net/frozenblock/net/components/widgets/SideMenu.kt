@@ -67,6 +67,7 @@ fun SideMenu(
 ) {
     Overlay(
         Modifier
+            .zIndex(1001)
             .setVariable(OverlayVars.BackgroundColor, Colors.Transparent)
             .onClick { close() }
     ) {
