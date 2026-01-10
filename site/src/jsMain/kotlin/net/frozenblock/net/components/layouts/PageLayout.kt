@@ -4,25 +4,21 @@ package net.frozenblock.net.components.layouts
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.varabyte.kobweb.compose.dom.svg.*
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.ColumnScope
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
-import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.style.CssStyle
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.style.toModifier
-import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import kotlinx.browser.document
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.fr
-import org.jetbrains.compose.web.css.percent
+import org.jetbrains.compose.web.css.vh
 import net.frozenblock.net.components.sections.Footer
 import net.frozenblock.net.components.sections.NavHeader
-import net.frozenblock.net.toSitePalette
 
 val PageContentStyle = CssStyle {
     base { Modifier.fillMaxSize().padding(leftRight = 2.cssRem, /*top = 4.0.cssRem*/) }
@@ -76,7 +72,7 @@ fun PageLayout(
     Box(
         Modifier
             .fillMaxWidth()
-            .minHeight(100.percent)
+            .minHeight(100.vh)
             // Create a box with two rows: the main content (fills as much space as it can) and the footer (which reserves
             // space at the bottom). "min-content" means the use the height of the row, which we use for the footer.
             // Since this box is set to *at least* 100%, the footer will always appear at least on the bottom but can be
