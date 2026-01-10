@@ -88,7 +88,7 @@ private fun SocialBar() {
         }
         Tooltip(ElementTarget.PreviousSibling, "Watch our YouTube videos", Modifier.navHeaderZIndex())
         Link("https://modrinth.com/organization/frozenblock", HoverBrightenStyle.toModifier()) {
-            Image("/social/modrinth.svg", "Modrinth")
+            Image("/social/modrinth.svg", "Modrinth", modifier = Modifier.height(1.97.cssRem))
         }
         Tooltip(ElementTarget.PreviousSibling, "Download our mods", Modifier.navHeaderZIndex())
     }
